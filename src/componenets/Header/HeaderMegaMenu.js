@@ -20,20 +20,7 @@ import {
   import { MantineLogo } from '@mantine/ds';
   import { useDisclosure } from '@mantine/hooks';
   import {
-    IconNotification,
-    IconCode,
-    IconBook,
-    IconChartPie3,
-    IconFingerprint,
-    IconCoin,
     IconChevronDown,
-    IconMessage,
-    IconZoomQuestion,
-    IconFileBroken,
-    IconSmartHome,
-    IconEdit,
-    IconInfoCircle,
-    IconDeviceMobile
   } from '@tabler/icons';
   
   const useStyles = createStyles((theme) => ({
@@ -96,82 +83,14 @@ import {
     },
   }));
   
-  const mockdata = [
-    {
-      icon: IconCode,
-      title: 'For Everyone',
-      description: 'This MyCard can be used by all new borns.',
-    },
-    {
-      icon: IconCoin,
-      title: 'Free for everyone',
-      description: 'The cost of MyCard issuing will be taken care of by Government.',
-    },
-    {
-      icon: IconBook,
-      title: 'Documentation',
-      description: 'Everythinh you need to know about MyCard is present here.',
-    },
-    {
-      icon: IconFingerprint,
-      title: 'Security',
-      description: 'The safest and the best way to manage unfair practices.',
-    },
-    {
-      icon: IconChartPie3,
-      title: 'Analytics',
-      description: 'This MyCard can keep a check on Corruption.',
-    },
-    {
-      icon: IconNotification,
-      title: 'Notifications',
-      description: 'Everything will be get updated to the MyCard and corresponding notification will be recieved.',
-    },
-  ];
   
-  const mockdata2=[{
-    icon: IconEdit,
-    title:'Update your MyCard',
-    description:'Request for the updation of MyCard'
-  },
-{
-  icon: IconInfoCircle,
-  title:'About your MyCard',
-  description:'Features of MyCard'
-},
-{
-  icon: IconDeviceMobile,
-  title:'MyCard on your Mobile',
-  description:'Download your MyCard using App'
-}];
-  const mockdata3=[{
-    icon: IconZoomQuestion,
-    title:'Have any Queries?',
-    description:'FAQ'
-  },
-{
-  icon: IconMessage,
-  title:'Feedback',
-  description:'Submit your views'
-},
-{
-  icon: IconSmartHome,
-  title:'MyCard Headquaters',
-  description:'Visit our main branch'
-},
-{
-  icon: IconFileBroken,
-  title:'Grievance Redressal Mechanism',
-  description:'File Complaint and check complaint Status'
-}];
 
-
-  function HeaderMegaMenu() {
+  function HeaderMegaMenu(props) {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
     const { classes, theme } = useStyles();
   
-    const links = mockdata.map((item) => (
+    const links = props.mockdata.map((item) => (
       <UnstyledButton className={classes.subLink} key={item.title}>
         <Group noWrap align="flex-start">
           <ThemeIcon size={34} variant="default" radius="md">
@@ -188,7 +107,7 @@ import {
         </Group>
       </UnstyledButton>
     ));
-    const linksForMyCard = mockdata2.map((item) => (
+    const linksForMyCard = props.mockdata2.map((item) => (
       <UnstyledButton className={classes.subLink} key={item.title}>
         <Group noWrap align="flex-start">
           <ThemeIcon size={34} variant="default" radius="md">
@@ -205,7 +124,7 @@ import {
         </Group>
       </UnstyledButton>
     ));
-    const linksForSupport = mockdata3.map((item) => (
+    const linksForSupport = props.mockdata3.map((item) => (
       <UnstyledButton className={classes.subLink} key={item.title}>
         <Group noWrap align="flex-start">
           <ThemeIcon size={34} variant="default" radius="md">
