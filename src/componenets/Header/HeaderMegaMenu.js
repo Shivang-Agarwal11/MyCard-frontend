@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import {
     createStyles,
     Header,
@@ -88,8 +89,13 @@ import {
   function HeaderMegaMenu(props) {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+    const [containsRole,updatedcontainsRole]=useState("")
+    if(localStorage.getItem("role")){
+        updatedcontainsRole("role")
+    }
     const { classes, theme } = useStyles();
-  
+    const url=window.location.href
+    
     const links = props.mockdata.map((item) => (
       <UnstyledButton className={classes.subLink} key={item.title}>
         <Group noWrap align="flex-start">
@@ -142,14 +148,14 @@ import {
       </UnstyledButton>
     ));
   
-
+      
     
     return (
       <Box pb={30} >
         <Header height={60} px="md"  sx={(theme) => ({
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[2]})}>
           <Group position="apart" sx={{ height: '100%' }}>
-            <Text>MYCARD</Text>
+            <Text component='a' href="http://localhost:3000">MYCARD</Text>
   
             <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
               <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -263,11 +269,13 @@ import {
                 </HoverCard.Dropdown>
               </HoverCard>
             </Group>
-  
-            <Group className={classes.hiddenMobile}>
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
-            </Group>
+            {containsRole!="role"?
+              <Button sx={{"width":"8%"}}
+               component="a"
+      href="http://localhost:3000/login">Log in</Button>
+      :<></>
+        }             
+    
   
             <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />
           </Group>
