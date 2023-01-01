@@ -21,9 +21,9 @@ function App() {
      <Route
 					path="/"
 					element={
-						// <ProtectedRoutes>
+						<ProtectedRoutes>
 							<HomePage />
-						// </ProtectedRoutes>
+						</ProtectedRoutes>
 					}
 				/>
       <Route path="/login" element={<Login/>}/>
@@ -35,8 +35,8 @@ function App() {
   );
 }
 
-// export function ProtectedRoutes(props) {
-// 	if (localStorage.getItem("user")) return props.children
-// 	else return <Navigate to="/login" />
-// }
+export function ProtectedRoutes(props) {
+	if (localStorage.getItem("role")) return props.children
+	else return <Navigate to="/login" />
+}
 export default App;
