@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import axios, * as others from 'axios';
 import { useState } from 'react';
 
-function SignUpOrg() {
+function OrgCreateUser() {
   const [data,setData]=useState('')
   const navigate=useNavigate()
   const onOrgSignUp = (val) => {
@@ -123,4 +123,4 @@ function SignUpOrg() {
     </Container>
   );
 }
-export default SignUpOrg;
+export default OrgCreateUser;

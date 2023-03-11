@@ -18,7 +18,6 @@ import {
   Collapse,
   ScrollArea,
 } from '@mantine/core';
-import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
 import {
   IconChevronDown,
@@ -88,12 +87,12 @@ const useStyles = createStyles((theme) => ({
 function HeaderMegaMenu(props) {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-  const {loginUser, setLoginUser}=useStateContext()
+  const {login, setLogin}=useStateContext()
   const { classes, theme } = useStyles();
   const url = window.location.href
   const logOutHandler=()=>{
-    localStorage.removeItem("role")
-    setLoginUser("")
+    localStorage.clear()
+    setLogin("")
   }
 
   const links = props.mockdata.map((item) => (
@@ -271,12 +270,12 @@ function HeaderMegaMenu(props) {
             </HoverCard>
           </Group>
 
-         { !loginUser && <Button sx={{ "width": "8%" }}
+         { !login && <Button sx={{ "width": "8%" }}
             component="a"
             href="http://localhost:3000/login">Log in</Button>
 
     }
-    { loginUser && <Button sx={{ "width": "8%" }}
+    { login && <Button sx={{ "width": "8%" }}
             onClick={logOutHandler}>Log Out</Button>
 
     }

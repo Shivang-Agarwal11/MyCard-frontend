@@ -17,11 +17,11 @@ export default function UserLogin() {
     if (localStorage.getItem("role")) navigate("/")
   }, [navigate])
 
-  const { setLoginUser } = useStateContext()
+  const { setLogin } = useStateContext()
 
   const onSubmitUser = () => {
     localStorage.setItem("role", JSON.stringify({ "user": "user" }))
-    setLoginUser({ user: "User", password: "" })
+    setLogin({ user: "User", password: "" })
     navigate("/")
 
 
@@ -35,8 +35,7 @@ export default function UserLogin() {
     OTP: "",
 
   });
-
-
+  
   return (<div>
     <Container size={420} my={40}>
       <Title

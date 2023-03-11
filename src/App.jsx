@@ -14,24 +14,26 @@ import UserLogin from './pages/LoginPageUser';
 import SignUpOrg from './pages/SignUpOrg';
 import OrgLogin from './pages/LoginPageOrg';
 import AdminLogin from './pages/LoginPageAdmin';
+import {useStateContext} from './contexts/ContextProvider';
+import RequestPage from './pages/Request';
+import { OrgHomePage } from './componenets/Organization/HomePage';
 
 function App() {
+  const {loginUser, setLoginUser}=useStateContext()
+  if(loginUser)
+  console.log(loginUser['user'])
   return (
      <div>
      <HeaderMegaMenu mockdata={mock.mockdata} mockdata2={mockd.mockdata2} mockdata3={mockda.mockdata3}/>
      <Routes>
-     <Route
-					path="/"
-					element={
-						// <ProtectedRoutes>
-							<HomePage />
-						// </ProtectedRoutes>
-					}
-				/>
+     <Route path="/" element={<HomePage />}/>
       <Route path="/login" element={<UserLogin/>}/>
       <Route path="/signup" element={<SignUpOrg/>}/>
       <Route path="/org" element={<OrgLogin/>}/>
+      <Route path="/org/home" element={<OrgHomePage/>}/>
       <Route path="/admin" element={<AdminLogin/>}/>
+      <Route path="/request" element={<RequestPage/>}/>
+      {/* {loginUser && loginUser['user']==='organizaton'?<OrgLogin/>:<></>} */}
      </Routes> 
      
      
