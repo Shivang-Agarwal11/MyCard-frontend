@@ -1,6 +1,9 @@
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useStateContext } from '../../contexts/ContextProvider';
+import SideBar from './SideBar';
 const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: '#11284b',
@@ -76,11 +79,13 @@ const useStyles = createStyles((theme) => ({
 
 export function OrgHomePage() {
   const { classes } = useStyles();
-
-
-
+  const { orgData } =useStateContext()
+  const orgType=orgData.org.type
+  console.log(orgType)
   return (
+    <div>
     <div className={classes.root}>
+      {/* <SideBar/> */}
       <Container size="lg">
         <div className={classes.inner}>
           <div className={classes.content}>
@@ -92,14 +97,13 @@ export function OrgHomePage() {
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'yellow' }}
               >
-                fully featured
+                Platform
               </Text>{' '}
-              React components library
+              to manage user databases
             </Title>
 
             <Text className={classes.description} mt={30}>
-              Build fully functional accessible web applications with ease – Mantine includes more
-              than 100 customizable components and hooks to cover you in any situation
+              Update the details of the user or verify the user by just entering their MyCard Number
             </Text>
 
             <Button
@@ -113,7 +117,16 @@ export function OrgHomePage() {
             </Button>
           </div>
         </div>
-      </Container>
+        </Container>
+    </div>
+        {orgType=='Hospital'?<Button variant='link' component={Link}
+              gradient={{ from: 'pink', to: 'yellow' }}
+              size="xl"
+              className={classes.control}
+              mt={40}
+              to='/org/create'>
+                Register Citizen
+        </Button>:<></>}
     </div>
   );
 }

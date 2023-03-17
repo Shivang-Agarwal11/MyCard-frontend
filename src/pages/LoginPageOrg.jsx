@@ -18,7 +18,7 @@ export default function OrgLogin() {
 
  
 
-  const { setLogin } = useStateContext()
+  const { setLogin,setOrgData } = useStateContext()
 
   const onSubmitOrg = () => {
     // localStorage.setItem("role", JSON.stringify({ "user": "organization" }))
@@ -27,17 +27,15 @@ export default function OrgLogin() {
     const params={
       ...form
     }
-    console.log(params)
 
     axios
         .post("https://mycard.up.railway.app/api/org/login", params)
         .then((response) => {
-          console.log("Success")
-          
-          console.log(response.data.data)
+
           localStorage.setItem("role", JSON.stringify({ "user": "organization" }))
           localStorage.setItem("token",response.data.data.token)
           setLogin({ user: "Organization"})
+          setOrgData(response.data.data)
           navigate("/org/home")
         }, (error) => {
           console.log("Error")

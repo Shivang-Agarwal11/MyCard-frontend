@@ -23,6 +23,8 @@ import {
   IconChevronDown,
 } from '@tabler/icons';
 
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useStateContext } from '../../contexts/ContextProvider';
 const useStyles = createStyles((theme) => ({
   link: {
@@ -89,10 +91,17 @@ function HeaderMegaMenu(props) {
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const {login, setLogin}=useStateContext()
   const { classes, theme } = useStyles();
-  const url = window.location.href
+  const [log,setlog]=useState();
+  const navigate = useNavigate()
+
+  
+	
+
   const logOutHandler=()=>{
     localStorage.clear()
-    setLogin("")
+    setLogin("LogOut")
+    setlog("True")
+    navigate("/")
   }
 
   const links = props.mockdata.map((item) => (

@@ -3,116 +3,118 @@ import React from 'react'
 import { useForm } from '@mantine/form';
 import { Select, TextInput, Button, Container, Paper, PasswordInput, Title, Group, NumberInput } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
-// const axios = require("axios");
+import { DateInput } from '@mantine/dates';
+import { useStateContext } from '../../contexts/ContextProvider';
 import axios, * as others from 'axios';
 import { useState } from 'react';
 
 function OrgCreateUser() {
-  const [data,setData]=useState('')
-  const navigate=useNavigate()
+  const [data, setData] = useState('')
+  const [gender, setGender] = useState('')
+  const [value, setValue] = useState(null);
+  const [admitted, setAdmitted] = useState(null);
+  const [discharged, setDischarged] = useState(null);
+  const navigate = useNavigate()
+  const { orgData } =useStateContext()
   const onOrgSignUp = (val) => {
-    
+
     // alert("request")I
-    
+
     var params = {
-      "name": val.name,
-      "contactNumber": Number(val.number),
-      "email": val.email,
-      "address": {
-        "addressLine1": val.addressLine1,
-        "addressLine2": val.addressLine2,
-        "addressLine3": val.addressLine3,
-        "city": val.city,
-        "state": val.state,
-        "pincode": Number(val.pincode)
+      "privateId": "123456789",
+      "citName": orgData.org.city,
+      "gender": gender,
+      "dob":value,
+      "contactNumber":Number(val.number),
+      "fatherName":val.fname,
+      "motherName":val.mname,
+      "medicalRecord": {
+        "hospitalName": "ABC Hospital",
+        "patientSummary": "Patient is fine",
+        "patientId": val.pid,
+        "admittedDate": admitted,
+        "dischargedDate":discharged
       },
-      "type": data,
-      "username": val.username,
-      "password": val.password
     }
-        const headers = {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json"
-        }
-        axios
-        .post("https://mycard.up.railway.app/api/org/create", params,headers)
-        .then((response) => {
-          console.log("Success")
-          navigate('/request')
-        }, (error) => {
-          console.log("Error")
-          
-        });
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json"
+    }
+    axios
+      .post("https://mycard.up.railway.app/api/org/citizen/create", params, headers)
+      .then((response) => {
+        console.log("Success")
+        navigate('/request')
+      }, (error) => {
+        console.log("Error")
+
+      });
   }
 
-
   const form = useForm({
-    initialValues: { name: '', email: '', number: '', type:'',addressLine1: '', addressLine2: '', addressLine3: '', city: '', state: '', pincode: '', gst: '', password: '', confirmPassword: '', username: '' },
+    initialValues: { fname: '', mname: '', number: '' , pid:''},
 
     // functions will be used to validate values at corresponding key
     validate: {
-      name: (value) => (value.length < 2 ? 'Name must have at least 2 letters' : null),
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
       number: (value) => ((value.length != 10 || /^-?\d+$/.test(value) == false) ? 'Invalid Number' : null),
-      pincode: (value) => ((/^-?\d+$/.test(value) == false) ? 'Invalid pincode' : null),
-      confirmPassword: (value, values) =>
-        value !== values.password ? 'Passwords did not match' : null,
     },
   });
-  
+
   return (
     <Container size={520} my={40}>
       <Title
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
       >
-        Start with Us!
+        Enter Citizen Details
       </Title>
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form onSubmit={form.onSubmit((values)=>onOrgSignUp(values))}>
-          <TextInput label="Organization Name" placeholder="Name" {...form.getInputProps('name')} required />
+        <form onSubmit={form.onSubmit((values) => onOrgSignUp(values))}>
           <Select
             style={{ marginTop: 20, zIndex: 2 }}
-            data={['Finance', 'Hospital', 'Educational', 'Judicial']}
-            placeholder="Type"
-            label="Your Organization Type"
-            // classNames={classes}
-            onChange={setData}
+            data={['Male', 'Female', 'Transgender']}
+            placeholder="Gender"
+            label="Gender"
+            onChange={setGender}
             required
           />
-          <TextInput mt="sm" label="Email" placeholder="Email" {...form.getInputProps('email')} required />
+          <DateInput
+            value={value}
+            onChange={setValue}
+            label="Date Of Birth"
+            placeholder="DOB"
+
+            mx="auto"
+            required
+          />
           <TextInput
-          
+
             mt="sm"
-            label="Mobile Number"
+            label="Contact Number"
             placeholder="Number"
             min={0}
             max={99}
             {...form.getInputProps('number')}
           />
-          <TextInput label="Address Line 1" placeholder="Address" {...form.getInputProps('addressLine1')} required />
-          <TextInput label="Address Line 2" placeholder="Address" {...form.getInputProps('addressLine2')} />
-          <TextInput label="Address Line 3" placeholder="Address" {...form.getInputProps('addressLine3')} />
-          <TextInput label="City" placeholder="City" {...form.getInputProps('city')} required />
-          <TextInput label="State" placeholder="State" {...form.getInputProps('state')} required />
-          <TextInput label="Pincode" placeholder="Pincode" {...form.getInputProps('pincode')} required />
-          <TextInput label="GST Number" placeholder="GST No." {...form.getInputProps('gst')} required />
-          <TextInput label="UserName" placeholder="Name" {...form.getInputProps('username')} required />
-
-          <PasswordInput
-            label="Password"
-            placeholder="Password"
-            {...form.getInputProps('password')}
+          <TextInput mt="sm" label="Patient Id" placeholder="ID" {...form.getInputProps('pid')} />
+          <TextInput mt="sm" label="Father Name" placeholder="Name" {...form.getInputProps('fname')} />
+          <TextInput label="Mother Name" placeholder="Name" {...form.getInputProps('mname')} r />
+          <DateInput
+            value={admitted}
+            onChange={setAdmitted}
+            label="Admitted Date"
+            placeholder="Date"
+            mx="auto"
             required
           />
-
-          <PasswordInput
-            mt="sm"
-            label="Confirm password"
-            placeholder="Confirm password"
-            {...form.getInputProps('confirmPassword')}
-            required
+          <DateInput
+            value={discharged}
+            onChange={setDischarged}
+            label="Discharged Date"
+            placeholder="Date"
+            mx="auto"
           />
+
           <Group position='center'>
             <Button type="submit" mt="sm" onSubmit={onOrgSignUp}>
               Submit

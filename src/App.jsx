@@ -17,6 +17,7 @@ import AdminLogin from './pages/LoginPageAdmin';
 import {useStateContext} from './contexts/ContextProvider';
 import RequestPage from './pages/Request';
 import { OrgHomePage } from './componenets/Organization/HomePage';
+import OrgCreateUser from './componenets/Organization/UserCreate';
 
 function App() {
   const {loginUser, setLoginUser}=useStateContext()
@@ -33,6 +34,7 @@ function App() {
       <Route path="/org/home" element={<OrgHomePage/>}/>
       <Route path="/admin" element={<AdminLogin/>}/>
       <Route path="/request" element={<RequestPage/>}/>
+      <Route path="/org/create" element={<OrgCreateUser/>}/>
       {/* {loginUser && loginUser['user']==='organizaton'?<OrgLogin/>:<></>} */}
      </Routes> 
      
