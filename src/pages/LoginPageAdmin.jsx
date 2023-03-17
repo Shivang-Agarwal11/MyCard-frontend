@@ -9,6 +9,7 @@ import {
   Group,
   Button,
 } from '@mantine/core';
+import axios, * as others from 'axios';
 import { useStateContext } from '../contexts/ContextProvider';
 
 export default function AdminLogin(props) {
@@ -18,12 +19,30 @@ export default function AdminLogin(props) {
     if (localStorage.getItem("role")) navigate("/")
   }, [navigate])
 
-  const { setLoginUser } = useStateContext()
+  const { setLogin} = useStateContext()
 
   const onSubmitAdmin = () => {
-    localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
-    setLoginUser({ user: "admin", password: "" })
-    navigate("/")
+
+
+    const params={
+      "username":form.adminid,
+      "password":form.password
+    }
+
+    axios
+    .post("https://mycard.up.railway.app/admin/login", params)
+    .then((response) => {
+
+      
+      localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
+      localStorage.setItem("token",response.data.data.token)
+      setLogin({ user: "admin" })
+      console.log("Success")
+      navigate("/admin/home")
+    }, (error) => {
+      console.log("Error")
+      
+    });
 
   }
 
@@ -46,7 +65,7 @@ export default function AdminLogin(props) {
           </Title>
 
           <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-            <TextInput label="Admin ID" placeholder="XXXXXXXXXX" required value={form.orgid}
+            <TextInput label="Admin Name" placeholder="XXXXXXXXXX" required value={form.orgid}
               onChange={e => {
                 setForm({
                   ...form,

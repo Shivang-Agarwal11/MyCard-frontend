@@ -1,9 +1,4 @@
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useStateContext } from '../../contexts/ContextProvider';
-import SideBar from './SideBar';
 const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: '#11284b',
@@ -77,33 +72,30 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function OrgHomePage() {
+export default function AdminHome() {
   const { classes } = useStyles();
-  const { orgData } =useStateContext()
-  const orgType=orgData.org.type
   // console.log(orgType)
   return (
     <div>
     <div className={classes.root}>
-      {/* <SideBar/> */}
       <Container size="lg">
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
-              A{' '}
+              Welcome{' '}
               <Text
                 component="span"
                 inherit
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'yellow' }}
               >
-                Platform
+                Admin
               </Text>{' '}
-              to manage user databases
+              to manage the databases and requests.
             </Title>
 
             <Text className={classes.description} mt={30}>
-              Update the details of the user or verify the user by just entering their MyCard Number
+              Update the details of the organization  or verify the organzation.
             </Text>
 
             <Button
@@ -119,14 +111,6 @@ export function OrgHomePage() {
         </div>
         </Container>
     </div>
-        {orgType=='Hospital'?<Button variant='link' component={Link}
-              gradient={{ from: 'pink', to: 'yellow' }}
-              size="xl"
-              className={classes.control}
-              mt={40}
-              to='/org/citizen/create'>
-                Register Citizen
-        </Button>:<></>}
     </div>
   );
 }

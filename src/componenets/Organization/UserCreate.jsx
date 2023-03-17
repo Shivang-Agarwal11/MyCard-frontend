@@ -36,6 +36,7 @@ function OrgCreateUser() {
         "dischargedDate":discharged
       },
     }
+    console.log(params)
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
@@ -47,7 +48,7 @@ function OrgCreateUser() {
         navigate('/request')
       }, (error) => {
         console.log("Error")
-
+        navigate('/error')
       });
   }
 

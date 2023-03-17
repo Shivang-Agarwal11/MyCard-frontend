@@ -41,6 +41,7 @@ function SignUpOrg() {
           navigate('/request')
         }, (error) => {
           console.log("Error")
+          navigate('/error')
           
         });
   }

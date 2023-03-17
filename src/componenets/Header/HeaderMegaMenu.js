@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import {
   createStyles,
   Header,
@@ -241,7 +242,7 @@ function HeaderMegaMenu(props) {
                         The people are increasing in the ecosystem of MyCard.
                       </Text>
                     </div>
-                    <Button variant="default">Get started</Button>
+                    <Button variant="link" component={Link} to="/signup">Get started</Button>
                   </Group>
                 </div>
               </HoverCard.Dropdown>
