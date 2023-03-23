@@ -90,15 +90,15 @@ const useStyles = createStyles((theme) => ({
 function HeaderMegaMenu(props) {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
-  const {login, setLogin}=useStateContext()
+  const { login, setLogin } = useStateContext()
   const { classes, theme } = useStyles();
-  const [log,setlog]=useState();
+  const [log, setlog] = useState();
   const navigate = useNavigate()
 
-  
-	
 
-  const logOutHandler=()=>{
+
+
+  const logOutHandler = () => {
     localStorage.clear()
     setLogin("LogOut")
     setlog("True")
@@ -280,15 +280,15 @@ function HeaderMegaMenu(props) {
             </HoverCard>
           </Group>
 
-         { !login && <Button sx={{ "width": "8%" }}
+          {!login && <Button sx={{ "width": "8%" }}
             component="a"
             href="http://localhost:3000/login">Log in</Button>
 
-    }
-    { login && <Button sx={{ "width": "8%" }}
+          }
+          {login && <Button sx={{ "width": "8%" }}
             onClick={logOutHandler}>Log Out</Button>
 
-    }
+          }
 
 
           <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {  useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {
   TextInput,
   PasswordInput,
@@ -19,30 +19,30 @@ export default function AdminLogin(props) {
     if (localStorage.getItem("role")) navigate("/")
   }, [navigate])
 
-  const { setLogin} = useStateContext()
+  const { setLogin } = useStateContext()
 
   const onSubmitAdmin = () => {
 
 
-    const params={
-      "username":form.adminid,
-      "password":form.password
+    const params = {
+      "username": form.adminid,
+      "password": form.password
     }
 
     axios
-    .post("https://mycard.up.railway.app/admin/login", params)
-    .then((response) => {
+      .post("https://mycard.up.railway.app/admin/login", params)
+      .then((response) => {
 
-      
-      localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
-      localStorage.setItem("token",response.data.data.token)
-      setLogin({ user: "admin" })
-      console.log("Success")
-      navigate("/admin/home")
-    }, (error) => {
-      console.log("Error")
-      
-    });
+
+        localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
+        localStorage.setItem("token", response.data.data.token)
+        setLogin({ user: "admin" })
+        console.log("Success")
+        navigate("/admin/home")
+      }, (error) => {
+        console.log("Error")
+
+      });
 
   }
 

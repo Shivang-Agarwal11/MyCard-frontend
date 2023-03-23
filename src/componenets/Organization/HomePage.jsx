@@ -79,54 +79,54 @@ const useStyles = createStyles((theme) => ({
 
 export function OrgHomePage() {
   const { classes } = useStyles();
-  const { orgData } =useStateContext()
-  const orgType=orgData.org.type
+  const { orgData } = useStateContext()
+  const orgType = orgData.org.type
   // console.log(orgType)
   return (
     <div>
-    <div className={classes.root}>
-      {/* <SideBar/> */}
-      <Container size="lg">
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Title className={classes.title}>
-              A{' '}
-              <Text
-                component="span"
-                inherit
+      <div className={classes.root}>
+        {/* <SideBar/> */}
+        <Container size="lg">
+          <div className={classes.inner}>
+            <div className={classes.content}>
+              <Title className={classes.title}>
+                A{' '}
+                <Text
+                  component="span"
+                  inherit
+                  variant="gradient"
+                  gradient={{ from: 'pink', to: 'yellow' }}
+                >
+                  Platform
+                </Text>{' '}
+                to manage user databases
+              </Title>
+
+              <Text className={classes.description} mt={30}>
+                Update the details of the user or verify the user by just entering their MyCard Number
+              </Text>
+
+              <Button
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'yellow' }}
+                size="xl"
+                className={classes.control}
+                mt={40}
               >
-                Platform
-              </Text>{' '}
-              to manage user databases
-            </Title>
-
-            <Text className={classes.description} mt={30}>
-              Update the details of the user or verify the user by just entering their MyCard Number
-            </Text>
-
-            <Button
-              variant="gradient"
-              gradient={{ from: 'pink', to: 'yellow' }}
-              size="xl"
-              className={classes.control}
-              mt={40}
-            >
-              Get started
-            </Button>
+                Get started
+              </Button>
+            </div>
           </div>
-        </div>
         </Container>
-    </div>
-        {orgType=='Hospital'?<Button variant='link' component={Link}
-              gradient={{ from: 'pink', to: 'yellow' }}
-              size="xl"
-              className={classes.control}
-              mt={40}
-              to='/org/citizen/create'>
-                Register Citizen
-        </Button>:<></>}
+      </div>
+      {orgType == 'Hospital' ? <Button variant='link' component={Link}
+        gradient={{ from: 'pink', to: 'yellow' }}
+        size="xl"
+        className={classes.control}
+        mt={40}
+        to='/org/citizen/create'>
+        Register Citizen
+      </Button> : <></>}
     </div>
   );
 }

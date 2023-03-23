@@ -44,8 +44,8 @@ const useStyles = createStyles((theme) => ({
 
 export default function ErrorPage() {
   const { classes } = useStyles();
-  const ReturnHome=()=>{
-    <Navigate to="/"/>
+  const ReturnHome = () => {
+    <Navigate to="/" />
   }
   return (
     <div className={classes.root}>
@@ -56,7 +56,7 @@ export default function ErrorPage() {
           Return to try again
         </Text>
         <Group position="center">
-          <Button variant="link" size="md" to="/" sx={{backgroundColor:"white"}} component={Link}>
+          <Button variant="link" size="md" to="/" sx={{ backgroundColor: "white" }} component={Link}>
             Return to Home
           </Button>
         </Group>

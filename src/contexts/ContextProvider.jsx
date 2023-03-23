@@ -13,7 +13,7 @@ export const ContextProvider = ({ children }) => {
 	const [orgData, setOrgData] = useState(() =>
 		JSON.parse(localStorage.getItem("orgData"))
 	)
-	
+
 	return (
 		<StateContext.Provider
 			value={{

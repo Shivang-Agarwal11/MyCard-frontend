@@ -15,7 +15,7 @@ function OrgCreateUser() {
   const [admitted, setAdmitted] = useState(null);
   const [discharged, setDischarged] = useState(null);
   const navigate = useNavigate()
-  const { orgData } =useStateContext()
+  const { orgData } = useStateContext()
   const onOrgSignUp = (val) => {
 
     // alert("request")I
@@ -24,16 +24,16 @@ function OrgCreateUser() {
       "privateId": "123456789",
       "citName": orgData.org.city,
       "gender": gender,
-      "dob":value,
-      "contactNumber":Number(val.number),
-      "fatherName":val.fname,
-      "motherName":val.mname,
+      "dob": value,
+      "contactNumber": Number(val.number),
+      "fatherName": val.fname,
+      "motherName": val.mname,
       "medicalRecord": {
         "hospitalName": "ABC Hospital",
         "patientSummary": "Patient is fine",
         "patientId": val.pid,
         "admittedDate": admitted,
-        "dischargedDate":discharged
+        "dischargedDate": discharged
       },
     }
     console.log(params)
@@ -53,7 +53,7 @@ function OrgCreateUser() {
   }
 
   const form = useForm({
-    initialValues: { fname: '', mname: '', number: '' , pid:''},
+    initialValues: { fname: '', mname: '', number: '', pid: '' },
 
     // functions will be used to validate values at corresponding key
     validate: {
