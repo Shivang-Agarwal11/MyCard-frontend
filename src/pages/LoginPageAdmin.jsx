@@ -28,9 +28,13 @@ export default function AdminLogin(props) {
       "username": form.adminid,
       "password": form.password
     }
+    const headers={
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    }
 
     axios
-      .post("https://mycard.up.railway.app/admin/login", params)
+      .post("https://mycard.up.railway.app/admin/login", params,{headers:headers})
       .then((response) => {
 
 
