@@ -1,27 +1,36 @@
-import { Container, Grid, SimpleGrid, Skeleton, useMantineTheme } from '@mantine/core';
+import { Container, Card, useMantineTheme, Flex } from '@mantine/core';
+import { Text } from '@mantine/core';
+import { Group, ThemeIcon, UnstyledButton } from '@mantine/core';
 
-const PRIMARY_COL_HEIGHT = 200;
+export default function LongCard(props) {
 
-export default function LeadGrid() {
-  const theme = useMantineTheme();
-  const SECONDARY_COL_HEIGHT = PRIMARY_COL_HEIGHT / 2 - theme.spacing.md / 2;
-
+  const centerdata = props.carddata.map((item) => (
+    <Card shadow="sm"  radius="sm" withBorder w={900} p="lg" sx={{borderTop:"5px solid black", backgroundColor:""}} mb="md">
+      
+    <UnstyledButton  key={item.title}>
+      <Group noWrap align="flex-start">
+        <ThemeIcon size={34} variant="default" radius="md">
+          <item.icon size={22} />
+        </ThemeIcon>
+        <div>
+          <Text size="xl" weight={500}>
+            {item.title}
+          </Text>
+          <Text size="l" color="dimmed">
+            {item.description}
+          </Text>
+        </div>
+      </Group>
+    </UnstyledButton>
+    
+    </Card>
+  ));
   return (
-    <Container my="md">
-      <SimpleGrid cols={2} spacing="md" breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
-        <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} width="500px"/>
-        <Grid gutter="md">
-          <Grid.Col>
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={true} />
-          </Grid.Col>
-          <Grid.Col span={6}>
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-          </Grid.Col>
-          <Grid.Col span={6}>
-            <Skeleton height={SECONDARY_COL_HEIGHT} radius="md" animate={false} />
-          </Grid.Col>
-        </Grid>
-      </SimpleGrid>
-    </Container>
+  <Container pb="lg"  pl="xl" ml="xl">
+    
+ 
+    {centerdata}
+
+    </Container>    
   );
 }

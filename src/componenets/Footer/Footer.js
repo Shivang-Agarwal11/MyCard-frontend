@@ -126,7 +126,7 @@ export default function FooterLinks({ data }) {
         className={classes.link}
         component="a"
         href={link.link}
-        onClick={(event) => event.preventDefault()}
+        // onClick={(event) => event.preventDefault()}
     sx={{color:"grey",fontSize: 14}}
       >
         {link.label}

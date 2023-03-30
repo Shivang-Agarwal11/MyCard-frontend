@@ -62,6 +62,19 @@ export const datajson = {
           link: "#"
         }
       ]
+    },
+    {
+      title:"Resources",
+      links:[
+        {
+          label:"Organization",
+          link:"http://localhost:3000/org"
+        },
+        {
+          label:"Administrator",
+          link:"http://localhost:3000/admin"
+        }
+      ]
     }
   ]
 };

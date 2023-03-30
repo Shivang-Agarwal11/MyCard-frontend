@@ -113,11 +113,15 @@ export default function SliderCarousel() {
   return (
     <Carousel
       slideSize="50%"
-      breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
+      controlsOffset="lg"
+      breakpoints={[{ maxWidth: 'sm', slideSize: '90%', slideGap: 2 }]}
       slideGap="xl"
       align="start"
       loop
       slidesToScroll={mobile ? 1 : 2}
+      pl="sm"
+      pr="sm"
+      dragFree="True"
     >
       {slides}
     </Carousel>
