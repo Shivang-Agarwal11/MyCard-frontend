@@ -68,11 +68,13 @@ export const datajson = {
       links:[
         {
           label:"Organization",
-          link:"http://localhost:3000/org"
+          // link:"http://localhost:3000/org"
+          link:"https://mycardeco.netlify.app/org"
         },
         {
           label:"Administrator",
-          link:"http://localhost:3000/admin"
+          // link:"http://localhost:3000/admin"
+          link:"https://mycardeco.netlify.app/admin"
         }
       ]
     }
