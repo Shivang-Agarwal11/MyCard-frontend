@@ -5,7 +5,7 @@ import { Group, ThemeIcon, UnstyledButton } from '@mantine/core';
 export default function LongCard(props) {
 
   const centerdata = props.carddata.map((item) => (
-    <Card shadow="sm"  radius="sm" withBorder w={900} p="lg" sx={{borderTop:"5px solid black", backgroundColor:""}} mb="md">
+    <Card shadow="sm"  radius="sm" withBorder w={700} p="lg" sx={{borderTop:"5px solid black", backgroundColor:"", marginRight:"20px"}} mb="md">
       
     <UnstyledButton  key={item.title}>
       <Group noWrap align="flex-start">

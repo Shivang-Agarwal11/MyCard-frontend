@@ -10,7 +10,9 @@ import {
   IconBrandYoutube,
   IconBrandInstagram
 } from "@tabler/icons";
+import { useNavigate } from "react-router-dom";
 
+import { Link } from "react-router-dom";
 
 import GetInTouchSimple from "./GetInTouch";
 
@@ -118,14 +120,14 @@ const useStyles = createStyles((theme) => ({
 
 export default function FooterLinks({ data }) {
   const { classes } = useStyles();
-
+  const navigate=useNavigate()
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
       <Text
         key={index}
         className={classes.link}
-        component="a"
-        href={link.link}
+        component={Link}
+        to={link.link}
         // onClick={(event) => event.preventDefault()}
     sx={{color:"grey",fontSize: 14}}
       >
