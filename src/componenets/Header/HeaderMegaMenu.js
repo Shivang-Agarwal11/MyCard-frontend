@@ -25,7 +25,7 @@ import {
 } from '@tabler/icons';
 
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+
 import { useStateContext } from '../../contexts/ContextProvider';
 const useStyles = createStyles((theme) => ({
   link: {
@@ -165,7 +165,7 @@ function HeaderMegaMenu(props) {
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[2]
       })}>
         <Group position="apart" sx={{ height: '100%' }}>
-          <Text component='a' href="http://localhost:3000">MYCARD</Text>
+          <Text component={Link} to="/">MYCARD</Text>
 
           <Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
             <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
@@ -281,8 +281,8 @@ function HeaderMegaMenu(props) {
           </Group>
 
           {!login && <Button sx={{ "width": "8%" }}
-            component="a"
-            href="http://localhost:3000/login">Log in</Button>
+            component={Link}
+            to="/login">Log in</Button>
 
           }
           {login && <Button sx={{ "width": "8%" }}
