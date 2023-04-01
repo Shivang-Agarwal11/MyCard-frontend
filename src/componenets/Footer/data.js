@@ -68,11 +68,11 @@ export const datajson = {
       links:[
         {
           label:"Organization",
-          link:"http://localhost:3000/org"
+          link:"/org"
         },
         {
           label:"Administrator",
-          link:"http://localhost:3000/admin"
+          link:"/admin"
         }
       ]
     }
