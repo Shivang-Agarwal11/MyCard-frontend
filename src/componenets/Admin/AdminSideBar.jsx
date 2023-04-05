@@ -9,6 +9,7 @@ import {
   IconUser,
   IconSettings,
 } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -110,9 +111,9 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const mainLinksMockdata = [
-  { icon: IconHome2, label: 'Home' },
-  { icon: IconGauge, label: 'Dashboard' },
-  { icon: IconSettings, label: 'Settings' },
+  { icon: IconHome2, label: 'Home' ,link:'/admin/home'},
+  { icon: IconGauge, label: 'Dashboard', link:'/admin/dashboard' },
+  { icon: IconSettings, label: 'Settings',link:'admin/settings' },
 ];
 
 
@@ -132,6 +133,8 @@ export default function AdminSideBar() {
       <UnstyledButton
         onClick={() => setActive(link.label)}
         className={cx(classes.mainLink, { [classes.mainLinkActive]: link.label === active })}
+        component={Link}
+        to={link.link}
       >
         <link.icon size="1.4rem" stroke={1.5} />
       </UnstyledButton>
