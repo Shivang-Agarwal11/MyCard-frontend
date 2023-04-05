@@ -20,7 +20,7 @@ export default function AdminLogin(props) {
   }, [navigate])
 
   const { setLogin } = useStateContext()
-
+  const { setAdminData } =useStateContext()
   const onSubmitAdmin = () => {
 
 
@@ -36,11 +36,10 @@ export default function AdminLogin(props) {
     axios
       .post("https://mycard.up.railway.app/admin/login", params,{headers:headers})
       .then((response) => {
-
-
         localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
         localStorage.setItem("token", response.data.data.token)
         setLogin({ user: "admin" })
+        setAdminData(response.data.data)
         console.log("Success")
         navigate("/admin/home")
       }, (error) => {

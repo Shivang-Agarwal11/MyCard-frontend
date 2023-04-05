@@ -2,19 +2,29 @@ import { Box, Text, Code } from '@mantine/core';
 
 export default function AdminBox(props) {
   return (
+    <div 
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      // height: "100vh",
+      paddingBottom:"20px"
+    }}>
     <Box 
       sx={(theme) => ({
-        backgroundColor: "#DEE0D9",
+        backgroundColor: "#66b6d2",
         textAlign: 'center',
         padding: theme.spacing.xl,
-        borderRadius: theme.radius.md,
-        cursor: 'pointer',
+        borderRadius: theme.radius.lg,
+        alignContent:'center'
       })}
       mx="20px"
-      wx="100px"
+      w={props.width}
+      h={props.height}
+    
     >
         <Text fz='lg' c='black' fs='italic' fw={700}>{props.title}</Text>
       
-    </Box>
+    </Box></div>
   );
 }

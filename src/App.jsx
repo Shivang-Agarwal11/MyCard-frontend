@@ -20,6 +20,8 @@ import { OrgHomePage } from './componenets/Organization/HomePage';
 import OrgCreateUser from './componenets/Organization/UserCreate';
 import ErrorPage from './pages/Error';
 import AdminHome from './componenets/Admin/AdminHome';
+import Dashboard from './componenets/Admin/DashBoard';
+import AdminSideBar from './componenets/Admin/AdminSideBar';
 
 function App() {
   const { loginUser, setLoginUser } = useStateContext()
@@ -39,6 +41,7 @@ function App() {
         <Route path="/admin/home" element={<AdminHome />} />
         <Route path="/request" element={<RequestPage />} />
         <Route path="/error" element={<ErrorPage />} />
+        <Route path="/admin/dashboard" element={<Dashboard />} />
         {/* {loginUser && loginUser['user']==='organizaton'?<OrgLogin/>:<></>} */}
       </Routes>
 
