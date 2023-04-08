@@ -96,45 +96,61 @@ function HeaderMegaMenu(props) {
   const navigate = useNavigate()
 
 
-  function AdminLogOut(){
-    const header={
-      headers:{
+  function AdminLogOut() {
+    //     const header={
+    //       headers:{
+    //         "Access-Control-Allow-Origin": "*",
+    //       'Content-Type': 'application/json; charset=UTF-8',
+    //       'Authorization':`Bearer ${localStorage.getItem("token")}`
+    //   }
+    // }
+    //     console.log(header)
+    //     axios
+    //     .post("https://mycard.up.railway.app/admin/logout",header)
+    //     .then((response) => {
+    //       console.log("LogOut Successfull")
+    //     }, (error) => {
+    //       console.log("Error")
+
+    //     });
+    //   }
+    const headers = {
       'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization':`Bearer ${localStorage.getItem("token")}`
+      'Authorization': `Bearer ${localStorage.getItem("token")}`
+    };
+    
+    axios.post("https://mycard.up.railway.app/admin/logout", null, { headers })
+      .then((response) => {
+        console.log("Logout successful");
+        // Handle the response or update state accordingly
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+        // Handle the error
+      });
   }
-}
-    console.log(header)
+  function OrgLogOut() {
+    const headers = { "Authorization": localStorage.getItem("token") }
     axios
-    .post("https://mycard.up.railway.app/admin/logout",header)
-    .then((response) => {
-      console.log("LogOut Successfull")
-    }, (error) => {
-      console.log("Error")
+      .post("https://mycard.up.railway.app/api/org/logout", { headers: headers })
+      .then((response) => {
+        console.log("LogOut Successfull")
+      }, (error) => {
+        console.log("Error")
 
-    });
-  }
-  function OrgLogOut(){
-    const headers={"Authorization":localStorage.getItem("token")}
-    axios
-    .post("https://mycard.up.railway.app/api/org/logout",{headers:headers})
-    .then((response) => {
-      console.log("LogOut Successfull")
-    }, (error) => {
-      console.log("Error")
-
-    });
+      });
   }
 
   const logOutHandler = () => {
-  //   const value=JSON.parse(localStorage.getItem("role"))
-  //   console.log(localStorage.getItem("token"))
-  //   const role=value.user
-  //   console.log(role)
-  //   if(role=="administrator")
-  //   AdminLogOut();
-  //   else if(role=="organization")
-  //   OrgLogOut();
-    localStorage.clear()
+    const value = JSON.parse(localStorage.getItem("role"))
+    console.log(localStorage.getItem("token"))
+    const role = value.user
+    console.log(role)
+    if (role == "administrator")
+      AdminLogOut();
+    //   else if(role=="organization")
+    //   OrgLogOut();
+    // localStorage.clear()
     setLogin(null)
     setlog("True")
     navigate("/")

@@ -98,7 +98,7 @@ export function AdminHomeCenter() {
                 You can view your dashboard to see pending requests of the organizations and act upon their request.
               </Text>
 
-              <Button
+              {/* <Button
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'yellow' }}
                 size="xl"
@@ -108,7 +108,7 @@ export function AdminHomeCenter() {
                 to='/admin/dashboard'
               >
                 View Dashboard
-              </Button>
+              </Button> */}
             </div>
           </div>
         </Container>

@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createStyles, Navbar, UnstyledButton, Tooltip, Title, rem } from '@mantine/core';
 import {
   IconHome2,
   IconGauge,
-  IconDeviceDesktopAnalytics,
-  IconFingerprint,
-  IconCalendarStats,
-  IconUser,
   IconSettings,
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
+import axios, * as others from 'axios';
+import { AdminHomeCenter } from './AdminHomeCenter';
+import DashBoardContent from './AdminDashboard';
+import { useStateContext } from '../../contexts/ContextProvider';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -22,9 +22,8 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    borderRight: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-    }`,
+    borderRight: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
+      }`,
   },
 
   main: {
@@ -61,9 +60,8 @@ const useStyles = createStyles((theme) => ({
     padding: theme.spacing.md,
     paddingTop: rem(18),
     height: rem(60),
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-    }`,
+    borderBottom: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
+      }`,
   },
 
   logo: {
@@ -73,9 +71,8 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'center',
     height: rem(60),
     paddingTop: theme.spacing.md,
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-    }`,
+    borderBottom: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
+      }`,
     marginBottom: theme.spacing.xl,
   },
 
@@ -111,17 +108,20 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const mainLinksMockdata = [
-  { icon: IconHome2, label: 'Home' ,link:'/admin/home'},
-  { icon: IconGauge, label: 'Dashboard', link:'/admin/dashboard' },
-  { icon: IconSettings, label: 'Settings',link:'admin/settings' },
+  { icon: IconHome2, label: 'Home', link: '/admin/home' },
+  { icon: IconGauge, label: 'Dashboard', link: '/admin/dashboard' },
+  { icon: IconSettings, label: 'Settings', link: 'admin/settings' },
 ];
 
 
-export default function AdminSideBar() {
+export default function Admin() {
+  const [requestData, setrequesData] = useState(null)
+  const { setOrgDetails } = useStateContext();
+  const { orgDetails } = useStateContext();
   const { classes, cx } = useStyles();
   const [active, setActive] = useState('Home');
-  const [activeLink, setActiveLink] = useState('Settings');
 
+  
   const mainLinks = mainLinksMockdata.map((link) => (
     <Tooltip
       label={link.label}
@@ -134,20 +134,24 @@ export default function AdminSideBar() {
         onClick={() => setActive(link.label)}
         className={cx(classes.mainLink, { [classes.mainLinkActive]: link.label === active })}
         component={Link}
-        to={link.link}
+      // to={link.link}
       >
         <link.icon size="1.4rem" stroke={1.5} />
       </UnstyledButton>
     </Tooltip>
   ));
-
+    
   return (
-    <div sx={{display:"inline"}}>
-    <Navbar height={750} width={{ sm: 100 }} className={classes.wrapper}>
-        <div className={classes.aside}>
-          {mainLinks}
-        </div>
-     </Navbar>
-     </div> 
+    <div style={{ "display": "grid", "gridTemplateColumns": "8% 90%" }}>
+      <div sx={{ display: "inline" }}>
+        <Navbar height={750} width={{ sm: 100 }} className={classes.wrapper}>
+          <div className={classes.aside}>
+            {mainLinks}
+          </div>
+        </Navbar>
+      </div>
+      {active == "Home" ? <AdminHomeCenter /> : <></>}
+      {active == "Dashboard" ? <DashBoardContent /> : <></>}
+    </div>
   );
 }
