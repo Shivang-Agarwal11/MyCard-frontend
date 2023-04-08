@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminBox from "./AdminBox";
-
+import { Button } from "@mantine/core"
 import axios, * as others from 'axios';
 import AdminCard from "./AdminCard";
 import { useStateContext } from "../../contexts/ContextProvider";
@@ -28,8 +28,8 @@ export default function DashBoardContent() {
 
             });
     }, []);
-
-
+    
+    
     const storeOrgDetails = (items) => {
         const IdsMap = {}
         for (let i = 0; i < items.length; i++) {
@@ -38,7 +38,8 @@ export default function DashBoardContent() {
         }
         setOrgDetails(IdsMap)
     }
-
+    
+    
     if (!requestData) {
         return <div>Loading...</div>;
     }
@@ -46,6 +47,7 @@ export default function DashBoardContent() {
 
     console.log(orgDetails)
     const items = requestData.pendingRequests;
+
 
     return (
         <div>

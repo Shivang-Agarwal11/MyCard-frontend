@@ -143,6 +143,7 @@ export default function Admin() {
     
   return (
     <div style={{ "display": "grid", "gridTemplateColumns": "8% 90%" }}>
+      
       <div sx={{ display: "inline" }}>
         <Navbar height={750} width={{ sm: 100 }} className={classes.wrapper}>
           <div className={classes.aside}>

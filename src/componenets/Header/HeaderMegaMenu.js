@@ -143,14 +143,14 @@ function HeaderMegaMenu(props) {
 
   const logOutHandler = () => {
     const value = JSON.parse(localStorage.getItem("role"))
-    console.log(localStorage.getItem("token"))
-    const role = value.user
-    console.log(role)
-    if (role == "administrator")
-      AdminLogOut();
-    //   else if(role=="organization")
-    //   OrgLogOut();
-    // localStorage.clear()
+    // console.log(localStorage.getItem("token"))
+    // const role = value.user
+    // console.log(role)
+    // if (role == "administrator")
+    //   AdminLogOut();
+    // //   else if(role=="organization")
+    // //   OrgLogOut();
+    localStorage.clear()
     setLogin(null)
     setlog("True")
     navigate("/")

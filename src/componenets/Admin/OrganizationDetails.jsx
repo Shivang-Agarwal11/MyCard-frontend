@@ -3,18 +3,39 @@ import { Card, Text, Divider } from '@mantine/core';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { CloseButton, Group } from '@mantine/core';
 import { Select, TextInput, Button, Container, Paper, PasswordInput, Title } from '@mantine/core';
+import axios from 'axios';
 const OrganizationDetails = (props) => {
   const { orgDetails } = useStateContext()
   const id = props.id
   const dataOrg = orgDetails[id]
-  const type=dataOrg.type
+  const type = dataOrg.type
   const name = dataOrg.name
-  const contactNumber=dataOrg.contactNumber
+  const contactNumber = dataOrg.contactNumber
   const email = dataOrg.email
-  const address = dataOrg.address.addressLine1 +" " + dataOrg.address.addressLine2 + " " +dataOrg.address.addressLine3
+  const address = dataOrg.address.addressLine1 + " " + dataOrg.address.addressLine2 + " " + dataOrg.address.addressLine3
   const pincode = dataOrg.address.pincode
-  const city=dataOrg.address.city
-  const state=dataOrg.address.state
+  const city = dataOrg.address.city
+  const state = dataOrg.address.state
+
+  const validateOrg = () => {
+    var params = { "id": props.id }
+    const header = {
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
+      }
+    }
+    axios.post("https://mycard.up.railway.app/api/admin/org/validate", params, header)
+      .then((response) => {
+        console.log(response)
+        props.closeData()
+
+
+      }, (error) => {
+        console.log("Error")
+
+      });
+  }
   return (
     <Container size={520} my={40}>
       <Group position="center">
@@ -62,14 +83,14 @@ const OrganizationDetails = (props) => {
         </Text>
 
         <Group position='left'>
-          <Button type="submit" mt="sm">
+          <Button type="submit" mt="sm" onClick={validateOrg}>
             Accept
           </Button>
           <Button type="submit" mt="sm">
             Reject
           </Button>
         </Group>
-        
+
       </Paper>
     </Container>
 
