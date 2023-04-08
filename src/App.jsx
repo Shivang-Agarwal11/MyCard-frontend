@@ -19,9 +19,8 @@ import RequestPage from './pages/Request';
 import { OrgHomePage } from './componenets/Organization/HomePage';
 import OrgCreateUser from './componenets/Organization/UserCreate';
 import ErrorPage from './pages/Error';
-import AdminHome from './componenets/Admin/AdminHome';
-import Dashboard from './componenets/Admin/DashBoard';
-import AdminSideBar from './componenets/Admin/AdminSideBar';
+import Admin from './componenets/Admin/Admin';
+
 
 function App() {
   const { loginUser, setLoginUser } = useStateContext()
@@ -34,14 +33,16 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<SignUpOrg />} />
+        <Route path="/request" element={<RequestPage />} />
+        <Route path="/error" element={<ErrorPage />} />
         <Route path="/org" element={<OrgLogin />} />
         <Route path="/org/home" element={<OrgHomePage />} />
         <Route path="/org/citizen/create" element={<OrgCreateUser />} />
         <Route path="/admin" element={<AdminLogin />} />
-        <Route path="/admin/home" element={<AdminHome />} />
-        <Route path="/request" element={<RequestPage />} />
-        <Route path="/error" element={<ErrorPage />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
+        <Route path="/admin/home" element={<Admin/>} />
+        {/* <Route path="/admin/home/orgDetails" element={<Admin/>} /> */}
+        
+        {/* <Route path="/admin/dashboard" element={<DashBoard/>} /> */}
         {/* {loginUser && loginUser['user']==='organizaton'?<OrgLogin/>:<></>} */}
       </Routes>
 

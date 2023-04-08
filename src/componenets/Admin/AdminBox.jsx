@@ -12,7 +12,7 @@ export default function AdminBox(props) {
     }}>
     <Box 
       sx={(theme) => ({
-        backgroundColor: "#66b6d2",
+        backgroundColor: "#228BE6",
         textAlign: 'center',
         padding: theme.spacing.xl,
         borderRadius: theme.radius.lg,
@@ -23,7 +23,7 @@ export default function AdminBox(props) {
       h={props.height}
     
     >
-        <Text fz='lg' c='black' fs='italic' fw={700}>{props.title}</Text>
+        <Text fz='xl' c='white' fs='oblique' fw={900}>{props.title}</Text>
       
     </Box></div>
   );

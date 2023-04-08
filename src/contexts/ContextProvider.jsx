@@ -16,6 +16,7 @@ export const ContextProvider = ({ children }) => {
 	const [adminData, setAdminData] = useState(() =>
 		JSON.parse(localStorage.getItem("adminData"))
 	)
+	const [orgDetails,setOrgDetails]=useState(null)
 
 	return (
 		<StateContext.Provider
@@ -27,7 +28,9 @@ export const ContextProvider = ({ children }) => {
 				orgData,
 				setOrgData,
 				adminData,
-				setAdminData
+				setAdminData,
+				orgDetails,
+				setOrgDetails
 			}}>
 			{children}
 		</StateContext.Provider>
