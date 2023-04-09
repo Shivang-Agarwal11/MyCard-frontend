@@ -100,7 +100,7 @@ function HeaderMegaMenu(props) {
     const headers = {
       'Authorization': `Bearer ${localStorage.getItem("token")}`
     };
-    axios.post("https://mycard.up.railway.app/admin/logout", undefined, { headers })
+    axios.post(`${process.env.REACT_URL_NAME}/admin/logout`, undefined, { headers })
       .then((response) => {
         // console.log("Logout successful");
       })
@@ -112,7 +112,7 @@ function HeaderMegaMenu(props) {
   function OrgLogOut() {
     const headers = { "Authorization": localStorage.getItem("token") }
     axios
-      .post("https://mycard.up.railway.app/api/org/logout", undefined, { headers: headers })
+      .post(`${process.env.REACT_URL_NAME}/api/org/logout`, undefined, { headers: headers })
       .then((response) => {
         // console.log("LogOut Successfull")
       }, (error) => {

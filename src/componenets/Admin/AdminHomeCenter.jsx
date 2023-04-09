@@ -1,8 +1,4 @@
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useStateContext } from '../../contexts/ContextProvider';
 const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: '#D5dbde',
@@ -75,7 +71,6 @@ const useStyles = createStyles((theme) => ({
 
 export function AdminHomeCenter() {
   const { classes } = useStyles();
-  const { adminData } = useStateContext()
   return (
     <div>
       <div className={classes.root}>

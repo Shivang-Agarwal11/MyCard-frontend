@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useForm } from '@mantine/form';
-import { Select, TextInput, Button, Container, Paper, PasswordInput, Title, Group, NumberInput } from '@mantine/core';
+import { Select, TextInput, Button, Container, Paper, Title, Group, } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { DateInput } from '@mantine/dates';
 import { useStateContext } from '../../contexts/ContextProvider';
@@ -9,17 +9,15 @@ import axios, * as others from 'axios';
 import { useState } from 'react';
 
 function OrgCreateUser() {
-  const [data, setData] = useState('')
+
   const [gender, setGender] = useState('')
   const [value, setValue] = useState(null);
   const [admitted, setAdmitted] = useState(null);
   const [discharged, setDischarged] = useState(null);
-  const navigate = useNavigate()
-  const { orgData } = useStateContext()
+  const navigate = useNavigate();
+  const { orgData } = useStateContext();
+
   const onOrgSignUp = (val) => {
-
-    // alert("request")I
-
     var params = {
       "privateId": "123456789",
       "citName": orgData.org.city,
@@ -36,13 +34,13 @@ function OrgCreateUser() {
         "dischargedDate": discharged
       },
     }
-    console.log(params)
+
     const headers = {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json"
     }
     axios
-      .post("https://mycard.up.railway.app/api/org/citizen/create", params, headers)
+      .post(`${process.env.REACT_URL_NAME}/api/org/citizen/create`, params, headers)
       .then((response) => {
         console.log("Success")
         navigate('/request')

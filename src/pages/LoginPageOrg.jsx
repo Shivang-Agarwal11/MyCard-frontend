@@ -11,25 +11,21 @@ import {
   Group,
   Button,
 } from '@mantine/core';
+import API_URL from '../url';
 
 
 export default function OrgLogin() {
   const navigate = useNavigate()
 
-
-
   const { setLogin, setOrgData } = useStateContext()
 
   const onSubmitOrg = () => {
-    // localStorage.setItem("role", JSON.stringify({ "user": "organization" }))
-    // setLoginUser({ user: "organization", password: "" })
-    // navigate("/")
     const params = {
       ...form
     }
 
     axios
-      .post("https://mycard.up.railway.app/api/org/login", params)
+      .post(`${API_URL}/api/org/login`, params)
       .then((response) => {
         if (response.data.data.org['isValidated'] == true) {
           localStorage.setItem("role", JSON.stringify({ "user": "organization" }))

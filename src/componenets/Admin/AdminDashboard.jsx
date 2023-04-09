@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import AdminBox from "./AdminBox";
-import { Button } from "@mantine/core"
 import axios, * as others from 'axios';
 import AdminCard from "./AdminCard";
 import { useStateContext } from "../../contexts/ContextProvider";
+import API_URL from "../../url";
+
 export default function DashBoardContent() {
     const [requestData, setrequesData] = useState(null)
     const [reload,setReload]=useState();
@@ -17,7 +18,7 @@ export default function DashBoardContent() {
     }
     useEffect(() => {
         axios
-            .get("https://mycard.up.railway.app/api/admin/org/request", header)
+            .get(`${API_URL}/api/admin/org/request`, header)
             .then((response) => {
                 // console.log(response)
                 setrequesData({
@@ -46,12 +47,7 @@ export default function DashBoardContent() {
     if (!requestData) {
         return <div>Loading...</div>;
     }
-
-
-    console.log(orgDetails)
     const items = requestData.pendingRequests;
-
-
     return (
         <div>
             <AdminBox title="Pending Requests" height="20px" width="90%" />
