@@ -15,9 +15,6 @@ function SignUpOrg() {
   const [city, setCity] = useState()
   const navigate = useNavigate()
   const onOrgSignUp = (val) => {
-
-    // alert("request")I
-
     var params = {
       "name": val.name,
       "contactNumber": Number(val.number),
@@ -40,7 +37,7 @@ function SignUpOrg() {
       "Content-Type": "application/json"
     }
     axios
-      .post("https://mycard.up.railway.app/api/org/create", params, headers)
+      .post(`${process.env.REACT_URL_VARIABLE}/api/org/create`, params, headers)
       .then((response) => {
         console.log("Success")
         navigate('/request')

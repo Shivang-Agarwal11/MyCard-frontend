@@ -6,7 +6,6 @@ import {
   IconSettings,
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import axios, * as others from 'axios';
 import { AdminHomeCenter } from './AdminHomeCenter';
 import DashBoardContent from './AdminDashboard';
 import { useStateContext } from '../../contexts/ContextProvider';

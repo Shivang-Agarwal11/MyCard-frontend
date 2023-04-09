@@ -5,6 +5,7 @@ import { Center } from '@mantine/core';
 import axios, * as others from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../contexts/ContextProvider";
+import API_URL from "../../url";
 export default function Settings() {
     const { login, setLogin } = useStateContext()
     const navigate=useNavigate()
@@ -12,7 +13,7 @@ export default function Settings() {
         const headers = {
             'Authorization': `Bearer ${localStorage.getItem("token")}`
         };
-        axios.post("https://mycard.up.railway.app/admin/logoutall", undefined, { headers })
+        axios.post(`${API_URL}/admin/logoutall`, undefined, { headers })
             .then((response) => {
                 localStorage.clear()
                 setLogin(null)

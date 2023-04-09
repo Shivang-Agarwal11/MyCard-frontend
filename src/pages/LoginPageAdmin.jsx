@@ -11,6 +11,7 @@ import {
 } from '@mantine/core';
 import axios, * as others from 'axios';
 import { useStateContext } from '../contexts/ContextProvider';
+import API_URL from '../url';
 
 export default function AdminLogin(props) {
   const navigate = useNavigate()
@@ -34,7 +35,7 @@ export default function AdminLogin(props) {
     }
 
     axios
-      .post("https://mycard.up.railway.app/admin/login", params,{headers:headers})
+      .post(`${API_URL}/admin/login`, params,{headers:headers})
       .then((response) => {
         localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
         localStorage.setItem("token", response.data.data.token)

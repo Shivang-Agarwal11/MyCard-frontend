@@ -1,21 +1,36 @@
-import React from 'react';
-import { Card, Text, Divider } from '@mantine/core';
+import React, { useEffect } from 'react';
+import { Text} from '@mantine/core';
+import { Badge } from '@mantine/core';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { CloseButton, Group } from '@mantine/core';
-import { Select, TextInput, Button, Container, Paper, PasswordInput, Title } from '@mantine/core';
+import {  Button, Container, Paper,Title } from '@mantine/core';
 import axios from 'axios';
+import API_URL from '../../url';
 const OrganizationDetails = (props) => {
   const { orgDetails } = useStateContext()
   const id = props.id
   const dataOrg = orgDetails[id]
   const type = dataOrg.type
   const name = dataOrg.name
+  const gst=dataOrg.gst
   const contactNumber = dataOrg.contactNumber
   const email = dataOrg.email
   const address = dataOrg.address.addressLine1 + " " + dataOrg.address.addressLine2 + " " + dataOrg.address.addressLine3
   const pincode = dataOrg.address.pincode
   const city = dataOrg.address.city
   const state = dataOrg.address.state
+  const params={
+    "gstnum":gst
+  }
+
+  useEffect(()=>{
+    axios.get(`${API_URL}/api/org/gst/validate`,params)
+    .then((response)=>{
+      console.log(response)
+    },(error)=>{
+      console.log(error)
+    });
+  },[])
 
   const validateOrg = () => {
     var params = { "id": props.id }
@@ -25,7 +40,7 @@ const OrganizationDetails = (props) => {
         'Authorization': `Bearer ${localStorage.getItem("token")}`
       }
     }
-    axios.post("https://mycard.up.railway.app/api/admin/org/validate", params, header)
+    axios.post(`${API_URL}/api/admin/org/validate`, params, header)
       .then((response) => {
         console.log(response)
         props.closeData()
@@ -44,7 +59,7 @@ const OrganizationDetails = (props) => {
         'Authorization': `Bearer ${localStorage.getItem("token")}`
       }
     }
-    axios.post("https://mycard.up.railway.app/api/admin/org/reject", params, header)
+    axios.post(`${API_URL}/api/admin/org/reject`, params, header)
       .then((response) => {
         // console.log(response)
         props.closeData()
@@ -64,7 +79,8 @@ const OrganizationDetails = (props) => {
       >
         Organiation Details
       </Title>
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+      <Paper withBorder shadow="md" p={30} mt={30} radius="md" pt="sm">
+
         <Text align="left" size="lg" style={{ marginTop: '1rem' }}>
           <strong>Type: </strong>
           {type}
