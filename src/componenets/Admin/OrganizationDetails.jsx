@@ -36,6 +36,23 @@ const OrganizationDetails = (props) => {
 
       });
   }
+  const rejectOrg = () => {
+    var params = { "id": props.id }
+    const header = {
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
+      }
+    }
+    axios.post("https://mycard.up.railway.app/api/admin/org/reject", params, header)
+      .then((response) => {
+        // console.log(response)
+        props.closeData()
+      }, (error) => {
+        console.log("Error")
+
+      });
+  }
   return (
     <Container size={520} my={40}>
       <Group position="center">
@@ -86,7 +103,7 @@ const OrganizationDetails = (props) => {
           <Button type="submit" mt="sm" onClick={validateOrg}>
             Accept
           </Button>
-          <Button type="submit" mt="sm">
+          <Button type="submit" mt="sm" onClick={rejectOrg}>
             Reject
           </Button>
         </Group>

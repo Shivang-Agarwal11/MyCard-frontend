@@ -16,35 +16,42 @@ import {
 export default function OrgLogin() {
   const navigate = useNavigate()
 
- 
 
-  const { setLogin,setOrgData } = useStateContext()
+
+  const { setLogin, setOrgData } = useStateContext()
 
   const onSubmitOrg = () => {
     // localStorage.setItem("role", JSON.stringify({ "user": "organization" }))
     // setLoginUser({ user: "organization", password: "" })
     // navigate("/")
-    const params={
+    const params = {
       ...form
     }
 
     axios
-        .post("https://mycard.up.railway.app/api/org/login", params)
-        .then((response) => {
-
+      .post("https://mycard.up.railway.app/api/org/login", params)
+      .then((response) => {
+        if (response.data.data.org['isValidated'] == true) {
           localStorage.setItem("role", JSON.stringify({ "user": "organization" }))
-          localStorage.setItem("token",response.data.data.token)
-          setLogin({ user: "Organization"})
+          localStorage.setItem("token", response.data.data.token)
+          setLogin({ user: "Organization" })
           setOrgData(response.data.data)
           navigate("/org/home")
-        }, (error) => {
-          console.log("Error")
-          
-        });
+        }
+        else if(response.data.data.org['isValidated']==false){
+          navigate('/request')
+        }
+        else if(response.data.data.org['isRejected']==true){
+          navigate('/error')
+        }
+      }, (error) => {
+        console.log("Error")
+
+      });
 
   }
 
-  
+
 
   const [form, setForm] = useState({
     username: "",
@@ -84,7 +91,7 @@ export default function OrgLogin() {
               <Button mt="xl" onClick={onSubmitOrg}>
                 Log in
               </Button>
-              <Button mt="xl" variant='link' component={Link} sx={{backgroundColor:"#228BE6",color:"white"}} to='/signup'>
+              <Button mt="xl" variant='link' component={Link} sx={{ backgroundColor: "#228BE6", color: "white" }} to='/signup'>
                 Sign Up
               </Button>
             </Group>
