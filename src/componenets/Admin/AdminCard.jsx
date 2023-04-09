@@ -15,6 +15,7 @@ export default function AdminCard(props) {
   } 
   const closeData=()=>{
     setshowDetails("false")
+    props.loadPage()
   }
   if(showDetails=="true"){
     return(

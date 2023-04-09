@@ -10,6 +10,7 @@ import axios, * as others from 'axios';
 import { AdminHomeCenter } from './AdminHomeCenter';
 import DashBoardContent from './AdminDashboard';
 import { useStateContext } from '../../contexts/ContextProvider';
+import Settings from './Settings';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -153,6 +154,7 @@ export default function Admin() {
       </div>
       {active == "Home" ? <AdminHomeCenter /> : <></>}
       {active == "Dashboard" ? <DashBoardContent /> : <></>}
+      {active=="Settings"? <Settings/>:<></>}
     </div>
   );
 }

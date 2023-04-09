@@ -6,6 +6,7 @@ import AdminCard from "./AdminCard";
 import { useStateContext } from "../../contexts/ContextProvider";
 export default function DashBoardContent() {
     const [requestData, setrequesData] = useState(null)
+    const [reload,setReload]=useState();
     const { setOrgDetails } = useStateContext();
     const { orgDetails } = useStateContext();
     const header = {
@@ -27,9 +28,11 @@ export default function DashBoardContent() {
                 console.log("Error")
 
             });
-    }, []);
+    }, [reload]);
     
-    
+    const loadPage=()=>{
+        setReload("true")
+    }
     const storeOrgDetails = (items) => {
         const IdsMap = {}
         for (let i = 0; i < items.length; i++) {
@@ -53,7 +56,7 @@ export default function DashBoardContent() {
         <div>
             <AdminBox title="Pending Requests" height="20px" width="90%" />
             <AdminBox title={requestData.pendingRequestsCount} height="20px" width="30%" />
-            <AdminCard items={items} />
+            <AdminCard items={items} loadPage={loadPage}/>
         </div>
     );
 }

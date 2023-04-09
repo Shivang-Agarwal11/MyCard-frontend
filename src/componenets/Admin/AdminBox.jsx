@@ -6,8 +6,6 @@ export default function AdminBox(props) {
     style={{
       display: "flex",
       justifyContent: "center",
-      alignItems: "center",
-      // height: "100vh",
       paddingBottom:"20px"
     }}>
     <Box 
