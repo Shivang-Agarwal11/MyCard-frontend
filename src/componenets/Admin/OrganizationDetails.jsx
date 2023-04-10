@@ -20,16 +20,16 @@ const OrganizationDetails = (props) => {
   const pincode = dataOrg.address.pincode
   const city = dataOrg.address.city
   const state = dataOrg.address.state
-  const params = {
-    "gstnum": dataOrg.gst
-  }
+
   useEffect(() => {
-    axios.get(`${API_URL}/api/org/gst/validate`, params)
+    fetch(`${API_URL}/api/org/gst/validate?gstnum=${dataOrg.gst}`)
       .then((response) => {
-        setCorrectgst("GST NUMBER VALID")
-      }, (error) => {
-        setCorrectgst("GST NUMBER INVALID")
-      });
+        if (response.status == 400)
+          setCorrectgst("GST NUMBER INVALID")
+        else
+          setCorrectgst("GST NUMBER VALID")
+      }
+      )
   }, [])
 
   const validateOrg = () => {
@@ -83,7 +83,7 @@ const OrganizationDetails = (props) => {
         {correctgst == "GST NUMBER VALID" ?
           <Badge color='green' size='lg' variant='filled' radius="md">{correctgst}</Badge> :
           <Badge color='red' size='lg' variant='filled' radius="md">{correctgst}</Badge>
-  }
+        }
         <Text align="left" size="lg" style={{ marginTop: '1rem' }}>
           <strong>Type: </strong>
           {type}
