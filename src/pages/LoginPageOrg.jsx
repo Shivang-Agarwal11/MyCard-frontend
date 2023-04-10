@@ -34,11 +34,11 @@ export default function OrgLogin() {
           setOrgData(response.data.data)
           navigate("/org/home")
         }
-        else if(response.data.data.org['isValidated']==false){
-          navigate('/request')
-        }
         else if(response.data.data.org['isRejected']==true){
           navigate('/error')
+        }
+        else if(response.data.data.org['isValidated']==false){
+          navigate('/request')
         }
       }, (error) => {
         console.log("Error")

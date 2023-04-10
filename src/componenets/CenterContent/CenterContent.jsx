@@ -7,18 +7,9 @@ export default function CenterContent() {
  
 
   return (
-    <div>
-    <Flex align="flex-start"
-      direction="row"
-      wrap="wrap">
-    <Container my="lg" pl={0} ml="sm" mr="sm">
+    <div style={{ "display": "grid", "gridTemplateColumns": "50% 50%" }}>
      <LongCard carddata={carddata.data}/>
-    </Container>
-    <Container mr="sm" ml="sm" pb="sm" mb="sm">
-    
      <FaqSimple/>
-     </Container>
-    </Flex>
     </div>
   );
 }

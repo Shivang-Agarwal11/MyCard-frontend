@@ -7,6 +7,7 @@ import { DateInput } from '@mantine/dates';
 import { useStateContext } from '../../contexts/ContextProvider';
 import axios, * as others from 'axios';
 import { useState } from 'react';
+import API_URL from '../../url';
 
 function OrgCreateUser() {
 
@@ -40,9 +41,8 @@ function OrgCreateUser() {
       "Content-Type": "application/json"
     }
     axios
-      .post(`${process.env.REACT_URL_NAME}/api/org/citizen/create`, params, headers)
+      .post(`${API_URL}/api/org/citizen/create`, params, headers)
       .then((response) => {
-        console.log("Success")
         navigate('/request')
       }, (error) => {
         console.log("Error")
@@ -52,8 +52,6 @@ function OrgCreateUser() {
 
   const form = useForm({
     initialValues: { fname: '', mname: '', number: '', pid: '' },
-
-    // functions will be used to validate values at corresponding key
     validate: {
       number: (value) => ((value.length != 10 || /^-?\d+$/.test(value) == false) ? 'Invalid Number' : null),
     },

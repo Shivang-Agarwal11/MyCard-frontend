@@ -1,13 +1,12 @@
 import AdminBox from "./AdminBox";
 import { Button } from "@mantine/core";
-import { useState } from "react";
 import { Center } from '@mantine/core';
 import axios, * as others from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../contexts/ContextProvider";
 import API_URL from "../../url";
 export default function Settings() {
-    const { login, setLogin } = useStateContext()
+    const { setLogin } = useStateContext()
     const navigate=useNavigate()
     const logoutAll = () => {
         const headers = {
@@ -15,6 +14,7 @@ export default function Settings() {
         };
         axios.post(`${API_URL}/admin/logoutall`, undefined, { headers })
             .then((response) => {
+
                 localStorage.clear()
                 setLogin(null)
                 navigate("/")
