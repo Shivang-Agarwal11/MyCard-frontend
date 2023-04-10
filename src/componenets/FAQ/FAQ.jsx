@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
 
   item: {
     borderRadius: theme.radius.md,
-    marginBottom: theme.spacing.lg,
+    // marginBottom: theme.spacing.lg,
 
     border: `1px solid ${
       theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
@@ -27,12 +27,12 @@ const placeholder =
 export default function FaqSimple() {
   const { classes } = useStyles();
   return (
-    <Container size="sm" className={classes.wrapper} pb="sm" sx={{width:"65rem", marginLeft:"45px"}}>
-      <Title align="center" className={classes.title}>
+    <Container size="sm" className={classes.wrapper} pb="sm" sx={{width:"65rem",marginTop:"10px"}}>
+      <Title align="center" className={classes.title} pb="md">
         Frequently Asked Questions
       </Title>
 
-      <Accordion variant="filled" >
+      <Accordion  variant="separated" chevronPosition="left">
         <Accordion.Item className={classes.item} value="reset-password">
           <Accordion.Control>How can I reset my password?</Accordion.Control>
           <Accordion.Panel>{placeholder}</Accordion.Panel>

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 // const axios = require("axios");
 import axios, * as others from 'axios';
 import { useState, useEffect } from 'react';
+import API_URL from '../url';
 
 function SignUpOrg() {
   const [data, setData] = useState('')
@@ -37,7 +38,7 @@ function SignUpOrg() {
       "Content-Type": "application/json"
     }
     axios
-      .post(`${process.env.REACT_URL_VARIABLE}/api/org/create`, params, headers)
+      .post(`${API_URL}/api/org/create`, params, headers)
       .then((response) => {
         console.log("Success")
         navigate('/request')

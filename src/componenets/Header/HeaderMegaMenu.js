@@ -27,6 +27,7 @@ import axios, * as others from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import { useStateContext } from '../../contexts/ContextProvider';
+import API_URL from '../../url';
 const useStyles = createStyles((theme) => ({
   link: {
     display: 'flex',
@@ -100,19 +101,16 @@ function HeaderMegaMenu(props) {
     const headers = {
       'Authorization': `Bearer ${localStorage.getItem("token")}`
     };
-    axios.post(`${process.env.REACT_URL_NAME}/admin/logout`, undefined, { headers })
+    axios.post(`${API_URL}/admin/logout`, undefined, { headers })
       .then((response) => {
-        // console.log("Logout successful");
       })
       .catch((error) => {
-        // console.log("Error: ", error);
-        // Handle the error
       });
   }
   function OrgLogOut() {
     const headers = { "Authorization": localStorage.getItem("token") }
     axios
-      .post(`${process.env.REACT_URL_NAME}/api/org/logout`, undefined, { headers: headers })
+      .post(`${API_URL}/api/org/logout`, undefined, { headers: headers })
       .then((response) => {
         // console.log("LogOut Successfull")
       }, (error) => {

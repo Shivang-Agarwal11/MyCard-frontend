@@ -1,36 +1,36 @@
-import React, { useEffect } from 'react';
-import { Text} from '@mantine/core';
+import React, { useEffect, useState } from 'react';
+import { Text } from '@mantine/core';
 import { Badge } from '@mantine/core';
 import { useStateContext } from '../../contexts/ContextProvider';
 import { CloseButton, Group } from '@mantine/core';
-import {  Button, Container, Paper,Title } from '@mantine/core';
+import { Button, Container, Paper, Title } from '@mantine/core';
 import axios from 'axios';
 import API_URL from '../../url';
 const OrganizationDetails = (props) => {
   const { orgDetails } = useStateContext()
+  const [correctgst, setCorrectgst] = useState()
   const id = props.id
   const dataOrg = orgDetails[id]
   const type = dataOrg.type
   const name = dataOrg.name
-  const gst=dataOrg.gst
+  const gst = dataOrg.gst
   const contactNumber = dataOrg.contactNumber
   const email = dataOrg.email
   const address = dataOrg.address.addressLine1 + " " + dataOrg.address.addressLine2 + " " + dataOrg.address.addressLine3
   const pincode = dataOrg.address.pincode
   const city = dataOrg.address.city
   const state = dataOrg.address.state
-  const params={
-    "gstnum":gst
+  const params = {
+    "gstnum": dataOrg.gst
   }
-
-  useEffect(()=>{
-    axios.get(`${API_URL}/api/org/gst/validate`,params)
-    .then((response)=>{
-      console.log(response)
-    },(error)=>{
-      console.log(error)
-    });
-  },[])
+  useEffect(() => {
+    axios.get(`${API_URL}/api/org/gst/validate`, params)
+      .then((response) => {
+        setCorrectgst("GST NUMBER VALID")
+      }, (error) => {
+        setCorrectgst("GST NUMBER INVALID")
+      });
+  }, [])
 
   const validateOrg = () => {
     var params = { "id": props.id }
@@ -80,7 +80,10 @@ const OrganizationDetails = (props) => {
         Organiation Details
       </Title>
       <Paper withBorder shadow="md" p={30} mt={30} radius="md" pt="sm">
-
+        {correctgst == "GST NUMBER VALID" ?
+          <Badge color='green' size='lg' variant='filled' radius="md">{correctgst}</Badge> :
+          <Badge color='red' size='lg' variant='filled' radius="md">{correctgst}</Badge>
+  }
         <Text align="left" size="lg" style={{ marginTop: '1rem' }}>
           <strong>Type: </strong>
           {type}
@@ -97,6 +100,10 @@ const OrganizationDetails = (props) => {
         <Text align="left" size="lg">
           <strong>Contact Number: </strong>
           {contactNumber}
+        </Text>
+        <Text align="left" size="lg">
+          <strong>GST Number: </strong>
+          {gst}
         </Text>
         <Text align="left" size="lg">
           <strong>Address: </strong>
