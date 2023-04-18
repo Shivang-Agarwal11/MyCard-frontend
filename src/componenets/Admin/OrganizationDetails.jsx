@@ -42,7 +42,6 @@ const OrganizationDetails = (props) => {
     }
     axios.post(`${API_URL}/api/admin/org/validate`, params, header)
       .then((response) => {
-        console.log(response)
         props.closeData()
 
 

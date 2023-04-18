@@ -30,7 +30,7 @@ export default function OrgLogin() {
         if (response.data.data.org['isValidated'] == true) {
           localStorage.setItem("role", JSON.stringify({ "user": "organization" }))
           localStorage.setItem("token", response.data.data.token)
-          setLogin({ user: "Organization" })
+          setLogin("Organization")
           setOrgData(response.data.data)
           navigate("/org/home")
         }
@@ -41,7 +41,8 @@ export default function OrgLogin() {
           navigate('/request')
         }
       }, (error) => {
-        console.log("Error")
+        alert("Try Again Some Error has occured");
+      
 
       });
 

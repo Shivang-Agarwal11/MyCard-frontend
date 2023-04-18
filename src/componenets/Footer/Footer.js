@@ -25,9 +25,8 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[6]
         : theme.colors.gray[0],
-    borderTop: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
-    }`
+    borderTop: `1px solid ${theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
+      }`
   },
 
   logo: {
@@ -102,9 +101,8 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.xl,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
-    borderTop: `1px solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2]
-    }`,
+    borderTop: `1px solid ${theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2]
+      }`,
 
     [theme.fn.smallerThan("sm")]: {
       flexDirection: "column"
@@ -120,7 +118,7 @@ const useStyles = createStyles((theme) => ({
 
 export default function FooterLinks({ data }) {
   const { classes } = useStyles();
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
       <Text
@@ -129,7 +127,7 @@ export default function FooterLinks({ data }) {
         component={Link}
         to={link.link}
         // onClick={(event) => event.preventDefault()}
-    sx={{color:"grey",fontSize: 14}}
+        sx={{ color: "grey", fontSize: 14 }}
       >
         {link.label}
       </Text>
@@ -144,24 +142,24 @@ export default function FooterLinks({ data }) {
   });
 
   return (
-    <footer  sx={{paddingBottom:0, backgroundColor:"green"}}>
-      <Container className={classes.inner} fluid="True" >
+    <div>
+      <Container className={classes.inner} fluid="True" sx={{marginLeft:"10px"}}>
         <div className={classes.logo}>
           {/* <MantineLogo size={30} /> */}
-          <Text size="lg"sx={{fontSize: 24}} className={classes.logo}>MyCard</Text>
-        
-          <Text size="s" sx={{fontSize: 14}} color="dimmed" className={classes.description} >
+          <Text size="lg" sx={{ fontSize: 24 }} className={classes.logo}>MyCard</Text>
+
+          <Text size="s" sx={{ fontSize: 14 }} color="dimmed" className={classes.description} >
             Get your life history in just one touch.
           </Text>
         </div>
         <div className={classes.groups} >{groups}</div>
       </Container>
-      <Container className={classes.afterFooter} fluid="True"> 
+      <Container className={classes.afterFooter} fluid="True">
         <Text color="dimmed" size="sm">
           © 2022 crypshiv.dev. All rights reserved.
         </Text>
 
-        <Group spacing={0} className={classes.social} position="right" noWrap sx={{paddingBottom:"0px"}}>
+        <Group spacing={0} className={classes.social} position="right" noWrap sx={{ paddingBottom: "0px" }}>
           <ActionIcon size="lg">
             <IconBrandTwitter size={18} stroke={2.5} />
           </ActionIcon>
@@ -173,6 +171,6 @@ export default function FooterLinks({ data }) {
           </ActionIcon>
         </Group>
       </Container>
-    </footer>
+    </div>
   );
 }

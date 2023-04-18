@@ -39,12 +39,12 @@ export default function AdminLogin(props) {
       .then((response) => {
         localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
         localStorage.setItem("token", response.data.data.token)
-        setLogin({ user: "admin" })
+        setLogin( "admin")
         setAdminData(response.data.data)
         console.log("Success")
         navigate("/admin/home")
       }, (error) => {
-        console.log("Error")
+        alert("Try Again Some Error has occured");
 
       });
 

@@ -18,6 +18,8 @@ export const ContextProvider = ({ children }) => {
 	)
 	const [orgDetails,setOrgDetails]=useState(null)
 
+	const [orgUser,setOrgUser]=useState(false)
+
 	return (
 		<StateContext.Provider
 			value={{
@@ -30,7 +32,8 @@ export const ContextProvider = ({ children }) => {
 				adminData,
 				setAdminData,
 				orgDetails,
-				setOrgDetails
+				setOrgDetails,
+				orgUser,setOrgUser
 			}}>
 			{children}
 		</StateContext.Provider>
