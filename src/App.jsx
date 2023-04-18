@@ -1,12 +1,8 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom"
-
-
 import './App.css';
 import HeaderMegaMenu from './componenets/Header/HeaderMegaMenu';
 import HomePage from './pages/HomePage';
-
-
 import { mock } from './componenets/Header/headerdata';
 import { mockd } from './componenets/Header/headerdata2';
 import { mockda } from './componenets/Header/headerdata3';
@@ -16,10 +12,10 @@ import OrgLogin from './pages/LoginPageOrg';
 import AdminLogin from './pages/LoginPageAdmin';
 import { useStateContext } from './contexts/ContextProvider';
 import RequestPage from './pages/Request';
-import { OrgHomePage } from './componenets/Organization/HomePage';
-import OrgCreateUser from './componenets/Organization/UserCreate';
 import ErrorPage from './pages/Error';
 import Admin from './componenets/Admin/Admin';
+import OrganizationHome from './componenets/Organization/OrganisationHome';
+import GetUser from './componenets/Organization/GetUser';
 
 
 function App() {
@@ -36,8 +32,8 @@ function App() {
         <Route path="/request" element={<RequestPage />} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/org" element={<OrgLogin />} />
-        <Route path="/org/home" element={<OrgHomePage />} />
-        <Route path="/org/citizen/create" element={<OrgCreateUser />} />
+        <Route path="/org/home" element={<OrganizationHome />} />
+        <Route path="/org/user" element={<GetUser />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/home" element={<Admin/>} />
         {/* <Route path="/admin/home/orgDetails" element={<Admin/>} /> */}
@@ -52,7 +48,7 @@ function App() {
 }
 
 // export function ProtectedRoutes(props) {
-// 	if (localStorage.getItem("role")) return props.children
-// 	else return <Navigate to="/login" />
+// 	if (!localStorage.getItem("role")) return props.children
+// 	else if(localStorage.getItem("role")==="") />
 // }
 export default App;

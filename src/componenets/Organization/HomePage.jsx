@@ -1,5 +1,5 @@
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../contexts/ContextProvider';
 const useStyles = createStyles((theme) => ({
   root: {
@@ -15,6 +15,7 @@ const useStyles = createStyles((theme) => ({
   inner: {
     display: 'flex',
     justifyContent: 'space-between',
+    
 
     [theme.fn.smallerThan('md')]: {
       flexDirection: 'column',
@@ -74,15 +75,14 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function OrgHomePage() {
+export function OrgHomePage(props) {
+  const navigate=useNavigate()
   const { classes } = useStyles();
-  const { orgData } = useStateContext()
+  const { orgData } = useStateContext();
   const orgType = orgData.org.type
-  // console.log(orgType)
   return (
     <div>
       <div className={classes.root}>
-        {/* <SideBar/> */}
         <Container size="lg">
           <div className={classes.inner}>
             <div className={classes.content}>
@@ -109,6 +109,7 @@ export function OrgHomePage() {
                 size="xl"
                 className={classes.control}
                 mt={40}
+                onClick={props.getUser}
               >
                 Get started
               </Button>
@@ -116,12 +117,12 @@ export function OrgHomePage() {
           </div>
         </Container>
       </div>
-      {orgType == 'Hospital' ? <Button variant='link' component={Link}
+      {orgType == 'Hospital' ? <Button variant='filled' 
         gradient={{ from: 'pink', to: 'yellow' }}
         size="xl"
         className={classes.control}
         mt={40}
-        to='/org/citizen/create'>
+        onClick={props.RegisterUser}>
         Register Citizen
       </Button> : <></>}
     </div>

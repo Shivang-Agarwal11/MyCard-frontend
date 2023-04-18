@@ -34,27 +34,27 @@ export default function FaqSimple() {
 
       <Accordion  variant="separated" chevronPosition="left">
         <Accordion.Item className={classes.item} value="reset-password">
-          <Accordion.Control>How can I reset my password?</Accordion.Control>
+          <Accordion.Control>How can I login in to MyCard Potral?</Accordion.Control>
           <Accordion.Panel>{placeholder}</Accordion.Panel>
         </Accordion.Item>
 
         <Accordion.Item className={classes.item} value="another-account">
-          <Accordion.Control>Can I create more that one account?</Accordion.Control>
+          <Accordion.Control>Can I delete my data from MyCard?</Accordion.Control>
           <Accordion.Panel>{placeholder}</Accordion.Panel>
         </Accordion.Item>
 
         <Accordion.Item className={classes.item} value="newsletter">
-          <Accordion.Control>How can I subscribe to monthly newsletter?</Accordion.Control>
+          <Accordion.Control>How to get my digital footprint?</Accordion.Control>
           <Accordion.Panel>{placeholder}</Accordion.Panel>
         </Accordion.Item>
 
         <Accordion.Item className={classes.item} value="credit-card">
-          <Accordion.Control>Do you store credit card information securely?</Accordion.Control>
+          <Accordion.Control>Do you store my information securely?</Accordion.Control>
           <Accordion.Panel>{placeholder}</Accordion.Panel>
         </Accordion.Item>
 
         <Accordion.Item className={classes.item} value="payment">
-          <Accordion.Control>What payment systems to you work with?</Accordion.Control>
+          <Accordion.Control>What types of organization have been registered with MyCard ecosystem?</Accordion.Control>
           <Accordion.Panel>{placeholder}</Accordion.Panel>
         </Accordion.Item>
       </Accordion>

@@ -8,21 +8,16 @@ import {
   Button,
 } from '@mantine/core';
 
-import { useStateContext } from '../contexts/ContextProvider';
 
-export default function UserLogin() {
+
+export default function GetUser() {
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (localStorage.getItem("role")) navigate("/")
-  }, [navigate])
-
-  const { setLogin } = useStateContext()
 
   const onSubmitUser = () => {
     localStorage.setItem("role", JSON.stringify({ "user": "user" }))
-    setLogin("User")
-    navigate("/")
+    // setLogin({ user: "User", password: "" })
+    // navigate("/")
 
 
   }
@@ -42,7 +37,7 @@ export default function UserLogin() {
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
       >
-        Hello MyCard User!
+        Get MyCard User Details
       </Title>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -65,7 +60,7 @@ export default function UserLogin() {
           }} />
 
         <Button fullWidth mt="xl" onClick={onSubmitUser}>
-          Log in
+          Get Details
         </Button>
       </Paper>
     </Container>

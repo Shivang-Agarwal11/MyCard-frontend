@@ -24,8 +24,8 @@ function SignUpOrg() {
         "addressLine1": val.addressLine1,
         "addressLine2": val.addressLine2,
         "addressLine3": val.addressLine3,
-        "city": city,
-        "state": state,
+        "city": val.city,
+        "state": val.state,
         "pincode": Number(val.pincode),
       },
       "gst": val.gst,
@@ -49,36 +49,36 @@ function SignUpOrg() {
       });
   }
 
-  var headers = {
-    "Accept": "application/json",
-    "Authorization": " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGl2YW5nYWdhcndhbDExLnNhQGdtYWlsLmNvbSIsImFwaV90b2tlbiI6IkwxVHBUalZYa0thOW1yVGdGX05ESkRiaGVZV2EwOGNNR0gzRzJiQ044NHlVbVNCelVnZm5nUXVreXB1WTZraG1hRTQifSwiZXhwIjoxNjgxMTAyNDE2fQ.YjYWlN5WEJaS5db4sd5FTABbPIgoFRnAzezIInMwvhE"
-  }
-  useEffect(() => {
-    axios.get("https://www.universal-tutorial.com/api/states/India", { headers })
-    .then((response) => {
-      const states = []
-      for (let i = 0; i < response.data.length; i++) {
-        states.push(response.data[i]['state_name'])
-      }
-      updateStates(states)
-    })
-    .catch(error => console.log('error', error));
-  }, [])
+  // var headers = {
+  //   "Accept": "application/json",
+  //   "Authorization": " Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJzaGl2YW5nYWdhcndhbDExLnNhQGdtYWlsLmNvbSIsImFwaV90b2tlbiI6IkwxVHBUalZYa0thOW1yVGdGX05ESkRiaGVZV2EwOGNNR0gzRzJiQ044NHlVbVNCelVnZm5nUXVreXB1WTZraG1hRTQifSwiZXhwIjoxNjgxMTAyNDE2fQ.YjYWlN5WEJaS5db4sd5FTABbPIgoFRnAzezIInMwvhE"
+  // }
+  // useEffect(() => {
+  //   axios.get("https://www.universal-tutorial.com/api/states/India", { headers })
+  //   .then((response) => {
+  //     const states = []
+  //     for (let i = 0; i < response.data.length; i++) {
+  //       states.push(response.data[i]['state_name'])
+  //     }
+  //     updateStates(states)
+  //   })
+  //   .catch(error => console.log('error', error));
+  // }, [])
 
-  useEffect(() => {
-    axios.get(`https://www.universal-tutorial.com/api/cities/${state}`, { headers })
-    .then((response) => {
-      const city = []
-      for (let i = 0; i < response.data.length; i++) {
-        city.push(response.data[i]['city_name'])
-      }
-      updateCities(city)
-    })
-    .catch(error => console.log('error', error));
-  }, [state])
+  // useEffect(() => {
+  //   axios.get(`https://www.universal-tutorial.com/api/cities/${state}`, { headers })
+  //   .then((response) => {
+  //     const city = []
+  //     for (let i = 0; i < response.data.length; i++) {
+  //       city.push(response.data[i]['city_name'])
+  //     }
+  //     updateCities(city)
+  //   })
+  //   .catch(error => console.log('error', error));
+  // }, [state])
 
   const form = useForm({
-    initialValues: { name: '', email: '', number: '', type: '', addressLine1: '', addressLine2: '', addressLine3: '', pincode: '', gst: '', password: '', confirmPassword: '', username: '' },
+    initialValues: { name: '', email: '', number: '', type: '', addressLine1: '', addressLine2: '', addressLine3: '',state:'',city:'', pincode: '', gst: '', password: '', confirmPassword: '', username: '' },
 
     validate: {
       name: (value) => (value.length < 2 ? 'Name must have at least 2 letters' : null),
@@ -123,7 +123,9 @@ function SignUpOrg() {
           <TextInput label="Address Line 1" placeholder="Address" {...form.getInputProps('addressLine1')} required />
           <TextInput label="Address Line 2" placeholder="Address" {...form.getInputProps('addressLine2')} />
           <TextInput label="Address Line 3" placeholder="Address" {...form.getInputProps('addressLine3')} />
-          <Select
+          <TextInput label="State" placeholder="State" {...form.getInputProps('state')} />
+          <TextInput label="City" placeholder="City" {...form.getInputProps('city')} />
+          {/* <Select
             style={{ marginTop: 20, zIndex: 2 }}
             data={states}
             placeholder="State"
@@ -131,8 +133,9 @@ function SignUpOrg() {
             // classNames={classes}
             onChange={setStates}
             required
-          />
-          <Select
+          /> */}
+
+          {/* <Select
             style={{ marginTop: 20, zIndex: 2 }}
             data={cities}
             placeholder="City"
@@ -140,7 +143,7 @@ function SignUpOrg() {
             // classNames={classes}
             onChange={setCity}
             required
-          />
+          /> */}
 
           <TextInput label="Pincode" placeholder="Pincode" {...form.getInputProps('pincode')} required />
           <TextInput label="GST Number" placeholder="GST No." {...form.getInputProps('gst')} required />

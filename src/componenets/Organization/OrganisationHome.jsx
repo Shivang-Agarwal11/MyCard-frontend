@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
-import { createStyles, Navbar, UnstyledButton, Tooltip, Title, rem } from '@mantine/core';
+import { createStyles, Navbar, UnstyledButton, Tooltip, rem } from '@mantine/core';
+import { useStateContext } from '../../contexts/ContextProvider';
 import {
   IconHome2,
   IconGauge,
   IconSettings,
+  IconUserPlus
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
-import { AdminHomeCenter } from './AdminHomeCenter';
-import DashBoardContent from './AdminDashboard';
-import { useStateContext } from '../../contexts/ContextProvider';
-import Settings from './Settings';
+import { OrgHomePage } from './HomePage';
+import OrgCreateUser from './UserCreate';
+import GetUser from './GetUser';
+import { IconUser } from '@tabler/icons';
+
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -107,19 +110,53 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+
+
 const mainLinksMockdata = [
-  { icon: IconHome2, label: 'Home', link: '/admin/home' },
-  { icon: IconGauge, label: 'Dashboard', link: '/admin/dashboard' },
-  { icon: IconSettings, label: 'Settings', link: 'admin/settings' },
+  { icon: IconHome2, label: 'Home', link: '/org/home' },
+  { icon: IconGauge, label: 'Dashboard', link: '/org/dashboard' },
+  { icon: IconSettings, label: 'Settings', link: 'org/settings' },
+  { icon: IconUser, label: 'Create User', link: 'org/create' },
+];
+const mainLinksMockdata2 = [
+  { icon: IconHome2, label: 'Home', link: '/org/home' },
+  { icon: IconGauge, label: 'Dashboard', link: '/org/dashboard' },
+  { icon: IconSettings, label: 'Settings', link: 'org/settings' },
 ];
 
 
-export default function Admin() {
+export default function OrganizationHome() {
   const { classes, cx } = useStyles();
+  const [orgUser, setOrgUser] = useState(false);
   const [active, setActive] = useState('Home');
+  const [register, setRegister] = useState(false);
+  const { orgData } =useStateContext();
 
+  const getUser = () => {
+    setOrgUser(true)
+    setActive("none")
+  }
 
-  const mainLinks = mainLinksMockdata.map((link) => (
+  const RegisterUser = () => {
+    setOrgUser(false)
+    setActive("none")
+    setRegister(true)
+  }
+  const Cancel = () => {
+    setRegister("false")
+    setActive("Home")
+  }
+
+  const setStates = (label) => {
+    setActive(label)
+    setOrgUser(false)
+  }
+  var actual=mainLinksMockdata2;
+  if(orgData.org.type=="Medical"){
+    actual=mainLinksMockdata
+  }
+
+  const mainLinks = actual.map((link) => (
     <Tooltip
       label={link.label}
       position="right"
@@ -148,9 +185,11 @@ export default function Admin() {
           </div>
         </Navbar>
       </div>
-      {active == "Home" ? <AdminHomeCenter /> : <></>}
-      {active == "Dashboard" ? <DashBoardContent /> : <></>}
-      {active == "Settings" ? <Settings /> : <></>}
+      {active === 'Home' ? <OrgHomePage getUser={getUser} RegisterUser={RegisterUser}/> : <></>}
+      {active==='Create User'?<OrgCreateUser Cancel={Cancel}/>:<></>}
+      {(active != 'Home' && orgUser === true) ? <GetUser /> : <></>}
+      {register === true ? <OrgCreateUser Cancel={Cancel} /> : <></>}
+
     </div>
   );
 }
