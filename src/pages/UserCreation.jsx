@@ -1,5 +1,4 @@
-import { createStyles, Title, Text, Button, Container, Group, rem } from '@mantine/core';
-import { Link, Navigate } from 'react-router-dom';
+import { createStyles, Title, Text, Container, Group, rem } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -7,7 +6,6 @@ const useStyles = createStyles((theme) => ({
     paddingBottom: rem(120),
     backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
   },
-
   label: {
     textAlign: 'center',
     fontWeight: 900,
@@ -53,9 +51,6 @@ export default function UserCreation() {
           You will shortly recieve a notification on email.
         </Text>
         <Group position="center">
-          <Button variant="link" size="md" to="/org/home" sx={{backgroundColor:"white"}} component={Link}>
-            Return to Home
-          </Button>
         </Group>
       </Container>
     </div>

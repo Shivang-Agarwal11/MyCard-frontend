@@ -47,6 +47,7 @@ function OrgCreateUser(props) {
       .post(`${API_URL}/api/org/citizen/create`, params, header)
       .then((response) => {
         setUserCreated(true)
+        console.log(response)
       }, (error) => {
         console.log("Error")
         navigate('/error')

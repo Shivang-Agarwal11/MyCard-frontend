@@ -118,6 +118,17 @@ function HeaderMegaMenu(props) {
 
       });
   }
+  function UserLogOut() {
+    const headers = { "Authorization": localStorage.getItem("token") }
+    axios
+      .post(`${API_URL}/api/citizen/logout`, undefined, { headers: headers })
+      .then((response) => {
+        // console.log("LogOut Successfull")
+      }, (error) => {
+        // console.log("Error")
+
+      });
+  }
 
   const logOutHandler = () => {
     const value = JSON.parse(localStorage.getItem("role"))
@@ -126,6 +137,8 @@ function HeaderMegaMenu(props) {
       AdminLogOut();
     else if (role == "organization")
       OrgLogOut();
+    else if (role == "citizen")
+      UserLogOut();
     localStorage.clear()
     setLogin(null)
     setlog("True")
