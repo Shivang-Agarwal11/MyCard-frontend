@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {
   TextInput,
   Paper,
@@ -7,27 +7,38 @@ import {
   Container,
   Button,
 } from '@mantine/core';
-
+import axios, * as others from 'axios';
+import API_URL from '../url';
 import { useStateContext } from '../contexts/ContextProvider';
 
 export default function UserLogin() {
   const navigate = useNavigate()
-
-  useEffect(() => {
-    if (localStorage.getItem("role")) navigate("/")
-  }, [navigate])
+  let otp = 0;
+  // useEffect(() => {
+  //   if (localStorage.getItem("role")) navigate("/")
+  // }, [navigate])
 
   const { setLogin } = useStateContext()
 
   const onSubmitUser = () => {
-    localStorage.setItem("role", JSON.stringify({ "user": "user" }))
-    setLogin("User")
-    navigate("/")
-
-
+    const data = { ...form }
+    const params = {
+      "publicId": data.cardno
+    }
+    axios
+      .post(`${API_URL}/api/citizen/login`, params)
+      .then((response) => {
+        localStorage.setItem("role", JSON.stringify({ "user": "citizen" }))
+        localStorage.setItem("token", response.data.data.token)
+        setLogin("User")
+        navigate("/user/home")
+      }, (error) => {
+        alert("Try Again Some Error has occured");
+      });
   }
   const onSendOtp = () => {
-    console.log("Sent")
+    otp = Math.floor((Math.random() * 100000) + 1);
+    alert(`Your OTP is ${otp}`)
   }
 
   const [form, setForm] = useState({
@@ -35,7 +46,7 @@ export default function UserLogin() {
     OTP: "",
 
   });
-  
+
   return (<div>
     <Container size={420} my={40}>
       <Title

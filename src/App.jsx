@@ -16,6 +16,7 @@ import ErrorPage from './pages/Error';
 import Admin from './componenets/Admin/Admin';
 import OrganizationHome from './componenets/Organization/OrganisationHome';
 import GetUser from './componenets/Organization/GetUser';
+import HomeUser from './componenets/User/HomeUser';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/request" element={<RequestPage />} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path="/org" element={<OrgLogin />} />
+        <Route path="/user/home" element={<HomeUser />} />
         <Route path="/org/home" element={<OrganizationHome />} />
         <Route path="/org/user" element={<GetUser />} />
         <Route path="/admin" element={<AdminLogin />} />
