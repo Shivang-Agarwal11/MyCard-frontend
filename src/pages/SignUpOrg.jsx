@@ -91,14 +91,14 @@ function SignUpOrg() {
   });
 
   return (
-    <Container size={520} my={40}>
+    <Container size={820}>
       <Title
         align="center"
         sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
       >
         Start with Us!
       </Title>
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+      <Paper withBorder shadow="lg" p={30} mt={30} radius="md" bg="#E8EAEE">
         <form onSubmit={form.onSubmit((values) => onOrgSignUp(values))}>
           <TextInput label="Organization Name" placeholder="Name" {...form.getInputProps('name')} required />
           <Select
@@ -106,7 +106,6 @@ function SignUpOrg() {
             data={['Finance', 'Hospital', 'Educational', 'Judicial']}
             placeholder="Type"
             label="Your Organization Type"
-            // classNames={classes}
             onChange={setData}
             required
           />
@@ -125,26 +124,6 @@ function SignUpOrg() {
           <TextInput label="Address Line 3" placeholder="Address" {...form.getInputProps('addressLine3')} />
           <TextInput label="State" placeholder="State" {...form.getInputProps('state')} />
           <TextInput label="City" placeholder="City" {...form.getInputProps('city')} />
-          {/* <Select
-            style={{ marginTop: 20, zIndex: 2 }}
-            data={states}
-            placeholder="State"
-            label="State"
-            // classNames={classes}
-            onChange={setStates}
-            required
-          /> */}
-
-          {/* <Select
-            style={{ marginTop: 20, zIndex: 2 }}
-            data={cities}
-            placeholder="City"
-            label="City"
-            // classNames={classes}
-            onChange={setCity}
-            required
-          /> */}
-
           <TextInput label="Pincode" placeholder="Pincode" {...form.getInputProps('pincode')} required />
           <TextInput label="GST Number" placeholder="GST No." {...form.getInputProps('gst')} required />
           <TextInput label="UserName" placeholder="Name" {...form.getInputProps('username')} required />

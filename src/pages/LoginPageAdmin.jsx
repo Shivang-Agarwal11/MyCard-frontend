@@ -68,7 +68,7 @@ export default function AdminLogin(props) {
             Welcome Admin!
           </Title>
 
-          <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <Paper withBorder shadow="md" p={30} mt={30} radius="md" bg="#E8EAEE">
             <TextInput label="Admin Name" placeholder="XXXXXXXXXX" required value={form.orgid}
               onChange={e => {
                 setForm({

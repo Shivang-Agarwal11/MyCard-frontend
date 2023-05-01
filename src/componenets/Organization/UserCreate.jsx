@@ -73,7 +73,7 @@ function OrgCreateUser(props) {
         >
           Enter Citizen Details
         </Title>
-        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md" bg="#E8EAEE">
           <form onSubmit={form.onSubmit((values) => onOrgSignUp(values))}>
             <Select
               style={{ marginTop: 20, zIndex: 2 }}

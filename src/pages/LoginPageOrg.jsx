@@ -68,7 +68,7 @@ export default function OrgLogin() {
             Welcome Organization!
           </Title>
 
-          <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <Paper withBorder shadow="md" p={30} mt={30} radius="md" bg="#E8EAEE">
             <TextInput label="Organization UserName" placeholder="XXXXXXXXXX" required value={form.username}
               onChange={e => {
                 setForm({

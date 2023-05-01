@@ -46,7 +46,7 @@ export const datajson = {
       title: "Community",
       links: [
         {
-          label: "Join MyCard Community",
+          label: "Join Community",
           link: "#"
         },
         {

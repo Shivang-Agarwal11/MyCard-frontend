@@ -27,7 +27,7 @@ const placeholder =
 export default function FaqSimple() {
   const { classes } = useStyles();
   return (
-    <Container size="sm" className={classes.wrapper} pb="sm" sx={{width:"65rem",marginTop:"10px"}}>
+    <Container size="sm" className={classes.wrapper} pb="sm" sx={{width:"65rem",marginTop:"20px"}}>
       <Title align="center" className={classes.title} pb="md">
         Frequently Asked Questions
       </Title>

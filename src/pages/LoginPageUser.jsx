@@ -56,7 +56,7 @@ export default function UserLogin() {
         Hello MyCard User!
       </Title>
 
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+      <Paper withBorder shadow="md" p={30} mt={30} radius="md" bg="#E8EAEE">
         <TextInput label="MyCard Number" placeholder="XXXXX XXXXX XXXXX" required value={form.cardno}
           onChange={e => {
             setForm({
