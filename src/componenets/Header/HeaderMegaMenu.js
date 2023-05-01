@@ -202,7 +202,7 @@ function HeaderMegaMenu(props) {
   return (
     <Box pb={30} >
       <Header height={60} px="md" sx={(theme) => ({
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[2]
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
       })}>
         <Group position="apart" sx={{ height: '100%' }}>
           <Text component={Link} to="/">MYCARD</Text>

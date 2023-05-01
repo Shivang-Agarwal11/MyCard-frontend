@@ -134,7 +134,7 @@ export default function FooterLinks({ data }) {
     ));
 
     return (
-      <div className={classes.wrapper} key={group.title}>
+      <div className={classes.wrapper} key={group.title} style={{"paddingRight":"100px"}} >
         <Text className={classes.title}>{group.title}</Text>
         {links}
       </div>
@@ -143,7 +143,10 @@ export default function FooterLinks({ data }) {
 
   return (
     <div>
-      <Container className={classes.inner} fluid="True" sx={{marginLeft:"10px"}}>
+      <Container className={classes.inner} fluid="True" sx={{
+        borderTop:"1px solid lightgrey",
+        paddingTop:"20px"
+      }}>
         <div className={classes.logo}>
           {/* <MantineLogo size={30} /> */}
           <Text size="lg" sx={{ fontSize: 24 }} className={classes.logo}>MyCard</Text>

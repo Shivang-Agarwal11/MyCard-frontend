@@ -187,8 +187,7 @@ export default function OrganizationHome() {
       </div>
       {active === 'Home' ? <OrgHomePage getUser={getUser} RegisterUser={RegisterUser} /> : <></>}
       {active === 'Create User' ? <OrgCreateUser Cancel={Cancel} /> : <></>}
-      {(active != 'Home' && orgUser === true) ? <GetUser /> : <></>}
-      {register === true ? <OrgCreateUser Cancel={Cancel} /> : <></>}
+      {((active != 'Home' && active!= 'Create User' && orgUser) === true) ? <GetUser /> : <></>}
 
     </div>
   );
