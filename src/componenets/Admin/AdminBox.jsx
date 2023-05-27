@@ -12,7 +12,7 @@ export default function AdminBox(props) {
       sx={(theme) => ({
         backgroundColor: "#228BE6",
         textAlign: 'center',
-        padding: theme.spacing.xl,
+        padding: theme.spacing.sm,
         borderRadius: theme.radius.lg,
         alignContent:'center'
       })}

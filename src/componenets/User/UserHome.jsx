@@ -1,4 +1,5 @@
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
+import { useStateContext } from '../../contexts/ContextProvider';
 const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: '#D5dbde',
@@ -69,12 +70,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function AdminHomeCenter() {
+export function UserHome() {
+  const { userData } = useStateContext()
+  console.log(userData)
   const { classes } = useStyles();
   return (
     <div>
       <div className={classes.root}>
-        {/* <SideBar/> */}
         <Container size="lg">
           <div className={classes.inner}>
             <div className={classes.content}>
@@ -83,16 +85,13 @@ export function AdminHomeCenter() {
                   component="span"
                   inherit
                   variant="gradient"
-                  gradient={{ from: 'pink', to: 'yellow' }}
-                >
-                  Welcome Admin to MyCard Ecosystem.
+                  gradient={{ from: 'pink', to: 'yellow' }}>
+                  Welcome User to MyCard Ecosystem.
                 </Text>{' '}
               </Title>
-
               <Text className={classes.description} mt={30}>
-                You can view your dashboard to see pending requests of the organizations and act upon their request.
+                You can view your dashboard to see your digital footprint.
               </Text>
-              
             </div>
           </div>
         </Container>

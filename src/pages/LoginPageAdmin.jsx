@@ -21,7 +21,7 @@ export default function AdminLogin(props) {
   }, [navigate])
 
   const { setLogin } = useStateContext()
-  const { setAdminData } =useStateContext()
+  const { setAdminData } = useStateContext()
   const onSubmitAdmin = () => {
 
 
@@ -29,17 +29,17 @@ export default function AdminLogin(props) {
       "username": form.adminid,
       "password": form.password
     }
-    const headers={
+    const headers = {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     }
 
     axios
-      .post(`${API_URL}/admin/login`, params,{headers:headers})
+      .post(`${API_URL}/admin/login`, params, { headers: headers })
       .then((response) => {
         localStorage.setItem("role", JSON.stringify({ "user": "administrator" }))
         localStorage.setItem("token", response.data.data.token)
-        setLogin( "admin")
+        setLogin("admin")
         setAdminData(response.data.data)
         console.log("Success")
         navigate("/admin/home")

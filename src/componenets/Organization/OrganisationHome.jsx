@@ -12,6 +12,7 @@ import { OrgHomePage } from './HomePage';
 import OrgCreateUser from './UserCreate';
 import GetUser from './GetUser';
 import { IconUser } from '@tabler/icons';
+import DisplayData from './DisplayData';
 
 
 const useStyles = createStyles((theme) => ({
@@ -129,21 +130,24 @@ export default function OrganizationHome() {
   const { classes, cx } = useStyles();
   const [orgUser, setOrgUser] = useState(false);
   const [active, setActive] = useState('Home');
-  const [register, setRegister] = useState(false);
+  const [getUserDetails, setgetUser] = useState(false);
   const { orgData } = useStateContext();
 
   const getUser = () => {
     setOrgUser(true)
     setActive("none")
   }
+  const DisplayDatauser=()=>{
+    setgetUser(!getUserDetails)
+    setOrgUser(false)
+    setActive("none")
+  }
 
   const RegisterUser = () => {
     setOrgUser(false)
     setActive("none")
-    setRegister(true)
   }
   const Cancel = () => {
-    setRegister("false")
     setActive("Home")
   }
 
@@ -185,9 +189,10 @@ export default function OrganizationHome() {
           </div>
         </Navbar>
       </div>
-      {active === 'Home' ? <OrgHomePage getUser={getUser} RegisterUser={RegisterUser} /> : <></>}
+      {active === 'Home' ? <OrgHomePage getUser={getUser} /> : <></>}
       {active === 'Create User' ? <OrgCreateUser Cancel={Cancel} /> : <></>}
-      {((active != 'Home' && active!= 'Create User' && orgUser) === true) ? <GetUser /> : <></>}
+      {((active != 'Home' && active!= 'Create User' && orgUser) === true) ? <GetUser DisplayDatauser={DisplayDatauser}/> : <></>}
+      {((active != 'Home' && active!= 'Create User' && getUserDetails) === true) ? <DisplayData /> : <></>}
 
     </div>
   );

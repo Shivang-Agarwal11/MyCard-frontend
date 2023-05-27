@@ -117,14 +117,6 @@ export function OrgHomePage(props) {
           </div>
         </Container>
       </div>
-      {orgType == 'Hospital' ? <Button variant='filled' 
-        gradient={{ from: 'pink', to: 'yellow' }}
-        size="xl"
-        className={classes.control}
-        mt={40}
-        onClick={props.RegisterUser}>
-        Register Citizen
-      </Button> : <></>}
     </div>
   );
 }

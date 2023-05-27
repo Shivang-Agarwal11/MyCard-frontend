@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { createStyles, Navbar, UnstyledButton, Tooltip, Title, rem } from '@mantine/core';
+import { createStyles, Navbar, UnstyledButton, Tooltip,rem } from '@mantine/core';
 import {
   IconHome2,
   IconGauge,
   IconSettings,
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
+import { UserHome } from './UserHome';
+import DashBoardContentUser from './DashboardContentUser';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -144,9 +146,9 @@ export default function HomeUser() {
           </div>
         </Navbar>
       </div>
-      {/* {active == "Home" ? <AdminHomeCenter /> : <></>}
-      {active == "Dashboard" ? <DashBoardContent /> : <></>}
-      {active == "Settings" ? <Settings /> : <></>} */}
+      {active == "Home" ? <UserHome /> : <></>}
+      {active == "Dashboard" ? <DashBoardContentUser /> : <></>}
+      {/* // {active == "Settings" ? <Settings /> : <></>} */}  
     </div>
   );
 }

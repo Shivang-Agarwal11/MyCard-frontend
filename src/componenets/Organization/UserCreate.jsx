@@ -21,7 +21,6 @@ function OrgCreateUser(props) {
 
   const onOrgSignUp = (val) => {
     var params = {
-      "privateId": "123456789",
       "citName": orgData.org.city,
       "gender": gender,
       "dob": value,
@@ -29,11 +28,12 @@ function OrgCreateUser(props) {
       "fatherName": val.fname,
       "motherName": val.mname,
       "medicalRecord": {
-        "hospitalName": "ABC Hospital",
-        "patientSummary": "Patient is fine",
-        "patientId": val.pid,
-        "admittedDate": admitted,
-        "dischargedDate": discharged
+        "record": [{
+          "patientSummary": val.summary,
+          "patientId": val.pid,
+          "admittedDate": admitted,
+          "dischargedDate": discharged
+        }]
       },
     }
 
@@ -55,7 +55,7 @@ function OrgCreateUser(props) {
   }
 
   const form = useForm({
-    initialValues: { fname: '', mname: '', number: '', pid: '' },
+    initialValues: { fname: '', mname: '', number: '', pid: '', summary: '' },
     validate: {
       number: (value) => ((value.length != 10 || /^-?\d+$/.test(value) == false) ? 'Invalid Number' : null),
     },
@@ -101,7 +101,16 @@ function OrgCreateUser(props) {
               max={99}
               {...form.getInputProps('number')}
             />
-            <TextInput mt="sm" label="Patient Id" placeholder="ID" {...form.getInputProps('pid')} />
+            <TextInput
+
+              mt="sm"
+              label="Patient Summary"
+              placeholder="Summary"
+              min={0}
+              max={99}
+              {...form.getInputProps('summary')}
+            />
+            <TextInput mt="sm" label="Patient Id" placeholder="ID" {...form.getInputProps('pid')} required />
             <TextInput mt="sm" label="Father Name" placeholder="Name" {...form.getInputProps('fname')} />
             <TextInput label="Mother Name" placeholder="Name" {...form.getInputProps('mname')} r />
             <DateInput
