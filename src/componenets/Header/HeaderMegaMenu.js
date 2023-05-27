@@ -112,9 +112,7 @@ function HeaderMegaMenu(props) {
     axios
       .post(`${API_URL}/api/org/logout`, undefined, { headers: headers })
       .then((response) => {
-        // console.log("LogOut Successfull")
       }, (error) => {
-        // console.log("Error")
 
       });
   }
@@ -123,10 +121,6 @@ function HeaderMegaMenu(props) {
     axios
       .post(`${API_URL}/api/citizen/logout`, undefined, { headers: headers })
       .then((response) => {
-        // console.log("LogOut Successfull")
-      }, (error) => {
-        // console.log("Error")
-
       });
   }
 

@@ -6,14 +6,14 @@ import { CloseButton, Group } from '@mantine/core';
 import { Button, Container, Paper, Title } from '@mantine/core';
 import axios from 'axios';
 import API_URL from '../../url';
-const OrganizationDetails = (props) => {
-  const { orgDetails } = useStateContext()
+const UserDetails = (props) => {
+  const { userData } = useStateContext()
   const [correctgst, setCorrectgst] = useState()
   const id = props.id
-  const dataOrg = orgDetails[id]
-  const type = dataOrg.type
+  const ID = userData.citizen.publicId
+  const gender = userData.citizen.gender
+  const dob = userData.citizen.dob
   const name = dataOrg.name
-  const gst = dataOrg.gst
   const contactNumber = dataOrg.contactNumber
   const email = dataOrg.email
   const address = dataOrg.address.addressLine1 + " " + dataOrg.address.addressLine2 + " " + dataOrg.address.addressLine3
@@ -43,8 +43,11 @@ const OrganizationDetails = (props) => {
     axios.post(`${API_URL}/api/admin/org/validate`, params, header)
       .then((response) => {
         props.closeData()
+
+
       }, (error) => {
         console.log("Error")
+
       });
   }
   const rejectOrg = () => {
@@ -57,8 +60,11 @@ const OrganizationDetails = (props) => {
     }
     axios.post(`${API_URL}/api/admin/org/reject`, params, header)
       .then((response) => {
+        // console.log(response)
         props.closeData()
       }, (error) => {
+        console.log("Error")
+
       });
   }
   return (
@@ -68,8 +74,7 @@ const OrganizationDetails = (props) => {
       </Group>
       <Title
         align="center"
-        sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
-      >
+        sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}>
         Organiation Details
       </Title>
       <Paper withBorder shadow="md" p={30} mt={30} radius="md" pt="sm">
@@ -85,7 +90,6 @@ const OrganizationDetails = (props) => {
           <strong>Name: </strong>
           {name}
         </Text>
-
         <Text align="left" size="lg">
           <strong>Email: </strong>
           {email}
@@ -114,6 +118,7 @@ const OrganizationDetails = (props) => {
           <strong>State: </strong>
           {state}
         </Text>
+
         <Group position='left'>
           <Button type="submit" mt="sm" onClick={validateOrg}>
             Accept
@@ -122,9 +127,10 @@ const OrganizationDetails = (props) => {
             Reject
           </Button>
         </Group>
+
       </Paper>
     </Container>
   );
 };
 
-export default OrganizationDetails;
+export default UserDetails;

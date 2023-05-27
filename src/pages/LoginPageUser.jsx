@@ -14,11 +14,8 @@ import { useStateContext } from '../contexts/ContextProvider';
 export default function UserLogin() {
   const navigate = useNavigate()
   let otp = 0;
-  // useEffect(() => {
-  //   if (localStorage.getItem("role")) navigate("/")
-  // }, [navigate])
 
-  const { setLogin } = useStateContext()
+  const { setLogin, setUserData } = useStateContext()
 
   const onSubmitUser = () => {
     const data = { ...form }
@@ -30,8 +27,9 @@ export default function UserLogin() {
       .then((response) => {
         localStorage.setItem("role", JSON.stringify({ "user": "citizen" }))
         localStorage.setItem("token", response.data.data.token)
-        setLogin("User")
+        setLogin("citizen")
         navigate("/user/home")
+        setUserData(response.data.data)
       }, (error) => {
         alert("Try Again Some Error has occured");
       });

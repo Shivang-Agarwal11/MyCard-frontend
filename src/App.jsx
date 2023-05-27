@@ -15,8 +15,8 @@ import RequestPage from './pages/Request';
 import ErrorPage from './pages/Error';
 import Admin from './componenets/Admin/Admin';
 import OrganizationHome from './componenets/Organization/OrganisationHome';
-import GetUser from './componenets/Organization/GetUser';
-import HomeUser from './componenets/User/HomeUser';
+import HomeUser from './componenets/User/UserMain';
+import DisplayData from './componenets/Organization/DisplayData';
 
 
 function App() {
@@ -35,7 +35,6 @@ function App() {
         <Route path="/org" element={<OrgLogin />} />
         <Route path="/user/home" element={<HomeUser />} />
         <Route path="/org/home" element={<OrganizationHome />} />
-        <Route path="/org/user" element={<GetUser />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route path="/admin/home" element={<Admin/>} />
         {/* <Route path="/admin/home/orgDetails" element={<Admin/>} /> */}
